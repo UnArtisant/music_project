@@ -27,5 +27,5 @@ class interfaceService() :
         print("add")
     
     '''Retourne numéro de la partition'''
-    def play(self) :
-        print("play")
+    def play(self):
+        self.action.playMusic()

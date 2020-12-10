@@ -1,6 +1,8 @@
+from src.Service.MusicService import musicService
+
 class actionService() :
     def __init__(self):
-        pass
+        self.music = musicService()
 
     def message(self) :
         print("hello word")
@@ -14,5 +16,7 @@ class actionService() :
             dict[i+1] = [d[i*2],d[i*2+1]]
         return(dict)
 
+
     def playMusic(self):
+        self.music.numericValue(self.getTitle())
 
