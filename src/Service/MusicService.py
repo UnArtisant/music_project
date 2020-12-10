@@ -1,7 +1,22 @@
+import numpy as np
+import simpleaudio as sa
 class musicService() :
     def __init__(self):
         pass
 
+    def sound(self,freq, duration ):
+        sample_rate = 44100
+        t = np.linspace(0,duration,int(duration*sample_rate), False)
+        tone = np.sin(freq * t * (6) * np.pi )
+        i = 0
+        byte_array = []
+        for b in tone.tobytes():
+            if i%4 != 3 :
+                byte_array.append(b)
+            i+=1
+        audio = bytearray(byte_array)
+        play_obj = sa.play_buffer(audio,1,3,sample_rate)
+        play_obj.wait_done()
 
     def numericValue(self,dico):
         d = dico[2][1]
