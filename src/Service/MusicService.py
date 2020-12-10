@@ -8,6 +8,8 @@ class musicService() :
         sample_rate = 44100
         t = np.linspace(0,duration,int(duration*sample_rate), False)
         tone = np.sin(freq * t * (6) * np.pi )
+        tone *= 8388607/np.max(np.abs(tone))
+        tone = tone.astype(np.int32)
         i = 0
         byte_array = []
         for b in tone.tobytes():

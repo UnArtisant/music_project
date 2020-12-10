@@ -5,7 +5,7 @@ DOn DOn DOn REn MIb REb DOn MIn REn REn DOr Zr DOn DOn DOn REn MIb REb DOn MIn R
 #3 Vive le vent
 MIn MIn MIb MIn MIn MIb MIn SOLn DOn REn MIb p Zn FAn FAn FAb FAn MIn MIb MIn REn REn MIn REb SOLb Zc MIn MIn MIb MIn MIn MIb MIn SOLn DOn REn MIb p Zn FAn FAn FAb FAn MIn MIb SOLn SOLn FAn REn DOb p Zc
 #4 Frères jacques
-SOLn LAn SIn SOLn SOLn LAn SIn SOLn SIn DOn REb SIn DOn REb Zn REn MIn REn DOn DIn SOLn REn MIn REn DOn SIn SOLn SOLn REn SOLb SOLn REn SOLb
+SOLn LAn SIn SOLn SOLn LAn SIn SOLn SIn DOn REb SIn DOn REb Zn REn MIn REn DOn DOn SOLn REn MIn REn DOn SIn SOLn SOLn REn SOLb SOLn REn SOLb
 #5 A la claire fontaine
 SOLb SOLn SIn SIn LAn SIn LAn SOLb SOLn SIn SIn LAn SIb SIb SIn LAn SOLn REn SIn REb REn SIn SOLn SIn LAb SOLb SOLn SIn SIn LAc SOLn SIn SOLn SIb SIn LAc SOLn SIn LAn SOLb
 #6 Au feu les pompiers
