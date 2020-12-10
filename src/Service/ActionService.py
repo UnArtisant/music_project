@@ -1,11 +1,8 @@
 class actionService() :
     def __init__(self):
         pass
-
-    def message(self) :
-        print("hello word")
-
-    def getTitle(self):
+    
+    def getPartitionData(self):
         dict = {}
         d = []
         with open("src/Partition/partitions.txt","r") as file:
@@ -15,4 +12,5 @@ class actionService() :
         return(dict)
 
     def playMusic(self):
+        pass
 

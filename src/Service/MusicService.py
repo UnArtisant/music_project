@@ -1,7 +1,14 @@
 from src.Service.ActionService import actionService
+
 class musicService() :
     def __init__(self):
         pass
+
+    def getPlayedMusic(self, partition) :
+        print("Listes des partitions : ")
+        for key in partition :
+            print(key, " ", partition[key][0])
+        return int(input("Veuillez rentrez votre choix : \n "))
 
     def numericValue(self,numb):
         d = actionService.getTitle()[numb]
