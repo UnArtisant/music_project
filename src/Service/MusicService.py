@@ -12,8 +12,8 @@ class musicService() :
             print(key, " ", partition[key][0])
         return int(input("Veuillez rentrez votre choix : \n "))
 
-    def numericValue(self,numb):
-        d = actionService.getTitle()[numb]
+    def numericValue(self,dico,numb):
+        d = dico[numb][1]
         partition = d.split()
         notes = []
         durations = []
