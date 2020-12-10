@@ -27,4 +27,4 @@ class actionService() :
         notes,duration = self.music.numericValue(self.getPartitionData())
         for i in range(len(notes)):
             notes[i] = self.frequency(notes[i])
-
+        
