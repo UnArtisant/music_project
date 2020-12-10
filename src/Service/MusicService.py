@@ -30,3 +30,4 @@ class musicService() :
                 notes.append(note)
                 durations.append(duration)
         return(notes,durations)
+
