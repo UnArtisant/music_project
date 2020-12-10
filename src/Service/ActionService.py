@@ -4,6 +4,8 @@ class actionService() :
     def __init__(self):
         self.music = musicService()
 
+    frequency = {1,}
+
     def message(self) :
         print("hello word")
 
@@ -18,5 +20,5 @@ class actionService() :
 
 
     def playMusic(self):
-        self.music.numericValue(self.getTitle())
+        notes,duration = self.music.numericValue(self.getTitle())
 
