@@ -12,7 +12,7 @@ class interfaceService() :
             self.update()
 
     def update(self):
-        print("update")   
+        print("update")
 
     def add(self) :
         print("add")
