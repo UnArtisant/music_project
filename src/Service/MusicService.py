@@ -23,30 +23,11 @@ class musicService() :
             else:
                 note = i[:-1]
                 duration = i[-1]
-                if note == "DO":
-                    note = 1
-                elif note == "RE":
-                    note = 2
-                elif note == "MI":
-                    note = 3
-                elif note == "FA":
-                    note = 4
-                elif note == "SOL":
-                    note = 5
-                elif note == "LA":
-                    note = 6
-                elif note == "SI":
-                    note = 7
-                elif note == "Z":
-                    note = 0
-                if duration == "c":
-                    duration = 0.125
-                if duration == "n":
-                    duration = 0.250
-                if duration == "b":
-                    duration = 0.500
-                if duration == "r":
-                    duration = 1
+                dicnote = {"DO":1,"RE":2,"MI":3,"FA":4,"SOL":5,"LA":6,"SI":7,"Z":0}
+                note = dicnote[note]
+                dicdura = {"c":0.125,"n":0.25,"b":0.5,"r":1}
+                duration = dicdura[duration]
                 notes.append(note)
                 durations.append(duration)
         return(notes,durations)
+

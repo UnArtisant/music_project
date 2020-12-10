@@ -36,6 +36,5 @@ class interfaceService() :
     def play(self) :
         partionData = self.action.getPartitionData()
         partition = self.music.getPlayedMusic(partionData)
-        self.action.playMusic()
-        
+        self.action.playMusic(partition)
 
