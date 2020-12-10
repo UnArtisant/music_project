@@ -10,6 +10,9 @@ class actionService() :
         print("hello word")
 
     def getTitle(self):
+        pass
+    
+    def getPartitionData(self):
         dict = {}
         d = []
         with open("src/Partition/partitions.txt","r") as file:
@@ -21,4 +24,5 @@ class actionService() :
 
     def playMusic(self):
         notes,duration = self.music.numericValue(self.getTitle())
+
 

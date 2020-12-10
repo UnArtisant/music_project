@@ -1,11 +1,13 @@
 from src.Service.ActionService import actionService
+from src.Service.MusicService import musicService
 
 class interfaceService() :
 
     def __init__(self) :
         self.action = actionService()
+        self.music = musicService()
     
-    def initInterface(self) :
+    def interface(self) :
         Invalid = True
         valueAccepted = [1,2,3]
         while Invalid :
@@ -26,6 +28,13 @@ class interfaceService() :
     def add(self) :
         print("add")
     
+
     '''Retourne numéro de la partition'''
     def play(self):
         self.action.playMusic()
+
+    def play(self) :
+        partionData = self.action.getPartitionData()
+        partition = self.music.getPlayedMusic(partionData)
+        
+
