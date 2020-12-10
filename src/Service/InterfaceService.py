@@ -6,10 +6,19 @@ class interfaceService() :
         self.action = actionService()
     
     def initInterface(self) :
-        action = int(input("Rentrer l'action à effectuer : \n 1) jouer une partition \n 2) écrire une partition \n 3) modifier une partition \n"))
-        if(action == 1) :
-            self.action.message()
-            self.update()
+        Invalid = True
+        valueAccepted = [1,2,3]
+        while Invalid :
+            action = int(input("Rentrer l'action à effectuer : \n 1) jouer une partition \n 2) écrire une partition \n 3) modifier une partition \n"))
+            if(action in valueAccepted) :
+                Invalid = False
+
+        if action == 1 :
+            self.play()
+        if action == 2 :
+            self.add()
+        if action == 3 :
+            self.update()    
 
     def update(self):
         print("update")
@@ -17,5 +26,6 @@ class interfaceService() :
     def add(self) :
         print("add")
     
+    '''Retourne numéro de la partition'''
     def play(self) :
         print("play")
