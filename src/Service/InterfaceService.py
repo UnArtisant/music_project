@@ -20,7 +20,7 @@ class interfaceService() :
     def update(self):
         action = self.music.isValid(([1,2]),"Rentrer l'action à effectuer : \n 1)Transposer une partition \n 2)Inverser une Partiton\n")
         if action == 1:
-            partitionData = self.getPartitionData()
+            partitionData = self.action.getPartitionData()
             partition = self.music.getPlayedMusic(partitionData)
             transposeNumb = int(input("De combien voulez vous transposer la partition ?\n"))
             self.action.transpose(partition,transposeNumb)
@@ -28,10 +28,11 @@ class interfaceService() :
             pass
 
 
+
     def write(self):
         action = self.music.isValid([1,2],"Rentrer l'action à effectuer : \n 1)Ecrire et jouer la musique\n 2) Ecrire dans la base de donnée\n")
         if action == 1:
-            self.action.writeandplay()
+            self.action.writeAndPlay()
         elif action == 2:
             self.music.upload()
 
@@ -42,6 +43,6 @@ class interfaceService() :
     def play(self) :
         partionData = self.action.getPartitionData()
         partition = self.music.getPlayedMusic(partionData)
-        notes,duration = self.music.numericValue(self.action.getPartitionData(),partition)
-        self.action.playMusic(partition,notes,duration)
+        notes,duration = self.music.numericValue(partionData,partition)
+        self.action.playMusic(notes,duration)
 

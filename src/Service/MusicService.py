@@ -34,7 +34,7 @@ class musicService() :
         print("Listes des partitions : ")
         for key in partition :
             print(key, " ", partition[key][0])
-        return int(input("Veuillez rentrez votre choix : \n "))
+        return (int(input("Veuillez rentrez votre choix : \n ")))
 
     def numericValue(self,dico,numb):
         d = dico[numb][1]
@@ -53,6 +53,7 @@ class musicService() :
                 duration = dicdura[duration]
                 notes.append(note)
                 durations.append(duration)
+        print(durations)
         return(notes,durations)
 
     def upload(self) :
