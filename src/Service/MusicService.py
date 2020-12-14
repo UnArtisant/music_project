@@ -4,6 +4,15 @@ class musicService() :
     def __init__(self):
         pass
 
+    def isValid(self, accepted, str_action) :
+        Invalid = True
+        valueAccepted = accepted
+        while Invalid :
+            action = int(input(str_action))
+            if(action in valueAccepted) :
+                Invalid = False
+        return action
+
     def sound(self,freq, duration ):
         sample_rate = 44100
         t = np.linspace(0,duration,int(duration*sample_rate), False)
