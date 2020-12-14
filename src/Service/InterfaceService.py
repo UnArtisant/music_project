@@ -20,12 +20,14 @@ class interfaceService() :
     def update(self):
         print("update")
 
-<<<<<<< HEAD
-    def write(self):
-        """condition : écrire une partition ou écrire et jouer une partition"""
 
-=======
->>>>>>> 44e50c658d5c4924b338277e15c896743ea2cb6c
+    def write(self):
+        action = self.music.isValid([1,2],"Rentrer l'action à effectuer : \n 1)Ecrire et jouer la musique\n 2) Ecrire dans la base de donnée")
+        if action == 1:
+            pass
+        elif action == 2:
+            pass
+
 
     def add(self) :
         print("add")
