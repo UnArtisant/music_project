@@ -19,8 +19,6 @@ class actionService() :
 
 
     def playMusic(self,notes,duration):
-        print(duration)
-        print(notes)
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         for i in range(len(notes)):
@@ -28,6 +26,8 @@ class actionService() :
                 self.music.sound(notes[i],duration[i])
             else :
                 time.sleep(duration[i])
+
+
 
     def writeAndPlay(self):
         name = input("Entrez le nom du fichier : \n")
@@ -41,6 +41,5 @@ class actionService() :
             if notes[i] != 0:
                 notes[i] += numb-1
                 notes[i] = notes[i] % 7 + 1
-        print(duration)
         self.playMusic(notes,duration)
 

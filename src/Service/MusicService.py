@@ -1,5 +1,6 @@
 import numpy as np
 import simpleaudio as sa
+
 class musicService() :
     def __init__(self):
         pass
@@ -53,7 +54,6 @@ class musicService() :
                 duration = dicdura[duration]
                 notes.append(note)
                 durations.append(duration)
-        print(durations)
         return(notes,durations)
 
     def upload(self) :
