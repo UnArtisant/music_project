@@ -33,7 +33,7 @@ class interfaceService() :
         if action == 1:
             self.action.writeandplay()
         elif action == 2:
-            pass
+            self.music.upload()
 
     
 
