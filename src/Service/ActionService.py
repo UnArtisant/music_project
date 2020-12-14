@@ -31,3 +31,6 @@ class actionService() :
         partition = input("Entrez la partition : \n")
         notes,duration = self.music.numericValue({1: [name, partition]}, 1)
         self.playMusic(notes,duration)
+
+    def transpose(self,partition,numb):
+        pass

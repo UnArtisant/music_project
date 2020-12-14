@@ -29,8 +29,6 @@ class musicService() :
         play_obj = sa.play_buffer(audio,1,3,sample_rate)
         play_obj.wait_done()
 
-    def numericValue(self,dico):
-        d = dico[2][1]
 
     def getPlayedMusic(self, partition) :
         print("Listes des partitions : ")
