@@ -25,7 +25,8 @@ class interfaceService() :
     def update(self):
         print("update")
 
-
+    def write(self):
+        """condition : écrire une partition ou écrire et jouer une partition"""
 
 
     def add(self) :
