@@ -5,9 +5,6 @@ class actionService() :
     def __init__(self):
         self.music = musicService()
         self.frequency = {1:264,2:297,3:330,4:352,5:396,6:440,7:497,0:-1}
-
-    def message(self) :
-        print("hello word")
     
     def getPartitionData(self):
         dict = {}
