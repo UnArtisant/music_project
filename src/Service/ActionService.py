@@ -17,8 +17,7 @@ class actionService() :
 
 
 
-    def playMusic(self,numbfile):
-        notes,duration = self.music.numericValue(self.getPartitionData(),numbfile)
+    def playMusic(self,notes,duration):
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         for i in range(len(notes)):
@@ -27,4 +26,8 @@ class actionService() :
             else :
                 np.sleep(duration[i])
 
-    
+    def writeAndPlay(self):
+        name = input("Entrez le nom du fichier : \n")
+        partition = input("Entrez la partition : \n")
+        notes,duration = self.music.numericValue({1: [name, partition]}, 1)
+        self.playMusic(notes,duration)
