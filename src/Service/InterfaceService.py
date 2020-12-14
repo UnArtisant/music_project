@@ -8,12 +8,7 @@ class interfaceService() :
         self.music = musicService()
     
     def interface(self) :
-        Invalid = True
-        valueAccepted = [1,2,3]
-        while Invalid :
-            action = int(input("Rentrer l'action à effectuer : \n 1) Jouer une partition \n 2) Ecrire une partition \n 3) Modifier une partition \n"))
-            if(action in valueAccepted) :
-                Invalid = False
+        action = self.music.isValid([1,2,3], "Rentrer l'action à effectuer : \n 1) Jouer une partition \n 2) Ecrire une partition \n 3) Modifier une partition \n")
 
         if action == 1 :
             self.play()
@@ -25,9 +20,12 @@ class interfaceService() :
     def update(self):
         print("update")
 
+<<<<<<< HEAD
     def write(self):
         """condition : écrire une partition ou écrire et jouer une partition"""
 
+=======
+>>>>>>> 44e50c658d5c4924b338277e15c896743ea2cb6c
 
     def add(self) :
         print("add")
