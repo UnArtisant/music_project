@@ -33,4 +33,14 @@ class actionService() :
         self.playMusic(notes,duration)
 
     def transpose(self,partition,numb):
-        pass
+        notes,duration = self.music.numericValue(partition)
+        for i in notes:
+            notes += numb
+            notes = notes % 7 + 1
+        tabtranspose = {1: 'DO', 2: 'RE', 3: 'MI', 4: 'FA', 5: 'SOL', 6: 'LA', 7: 'SI'}
+        notes2 = []
+        for i in notes:
+            notes2.append(tabtranspose[i])
+        with open("src/Partition/partitions.txt","r") as file:
+            lines = file.readlines()
+        
