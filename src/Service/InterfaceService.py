@@ -24,7 +24,7 @@ class interfaceService() :
     def write(self):
         action = self.music.isValid([1,2],"Rentrer l'action à effectuer : \n 1)Ecrire et jouer la musique\n 2) Ecrire dans la base de donnée")
         if action == 1:
-            pass
+            self.action.writeandplay()
         elif action == 2:
             self.music.upload()
     
@@ -34,5 +34,6 @@ class interfaceService() :
     def play(self) :
         partionData = self.action.getPartitionData()
         partition = self.music.getPlayedMusic(partionData)
-        self.action.playMusic(partition)
+        notes,duration = self.music.numericValue(self.action.getPartitionData(),partition)
+        self.action.playMusic(partition,notes,duration)
 
