@@ -57,3 +57,22 @@ class musicService() :
                 durations.append(duration)
         return(notes,durations)
 
+    def upload(self) :
+        title = input("Rentrer un titre")
+        print('Rentrer la partition que vous voulez enregistrer : ')
+        add = True
+        dataset = ""
+        while add :
+            value = input("Rentrer une note ou faites espace pour quitter le programme : ")
+            dataset += " " + value
+            if value == "" :
+                add = False
+        with open("src/Partition/partitions.txt","r") as file:
+            d = file.readlines()
+            self.length = len(d)//2
+        final = "#" + str(self.length) + " " + title +"\n" + dataset
+        with open("src/Partition/partitions.txt","a") as file :
+            file.write(final)
+
+
+

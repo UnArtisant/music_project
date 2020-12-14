@@ -13,7 +13,7 @@ class interfaceService() :
         if action == 1 :
             self.play()
         if action == 2 :
-            self.add()
+            self.write()
         if action == 3 :
             self.update()    
 
@@ -26,11 +26,7 @@ class interfaceService() :
         if action == 1:
             pass
         elif action == 2:
-            pass
-
-
-    def add(self) :
-        print("add")
+            self.music.upload()
     
 
     '''Retourne numéro de la partition'''
