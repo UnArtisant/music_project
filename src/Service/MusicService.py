@@ -9,9 +9,14 @@ class musicService() :
         Invalid = True
         valueAccepted = accepted
         while Invalid :
-            action = int(input(str_action))
-            if(action in valueAccepted) :
+            try :
+                action = int(input(str_action))
+                assert action not in valueAccepted
                 Invalid = False
+            except ValueError:
+                print("Vous n'avez pas rentré de nombre.\n")
+            except AssertionError:
+                print("Veuillez entrer une valeur parmis celles proposées")
         return action
 
     def sound(self,freq, duration ):

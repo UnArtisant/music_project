@@ -28,7 +28,6 @@ class interfaceService() :
             pass
 
 
-
     def write(self):
         action = self.music.isValid([1,2],"Rentrer l'action à effectuer : \n 1)Ecrire et jouer la musique\n 2) Ecrire dans la base de donnée\n")
         if action == 1:
