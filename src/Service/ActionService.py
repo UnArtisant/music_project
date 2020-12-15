@@ -37,9 +37,20 @@ class actionService() :
 
     def transpose(self,partition,numb):
         notes,duration = self.music.numericValue(self.getPartitionData(),partition)
+        dicnote = {1:"DO", 2:"RE", 3:"MI", 4:"FA", 5:"SOL", 6:"LA", 7:"SI"}
+        dicduration = {1:"r ", 0.5:"b ", 0.25:"n ", 0.125:"c ", 0.1875:"c p ", 0.375:"n p ", 0.75:"b p ", 1.5:"b p "}
+        with open("src/Partition/partitions.txt", "r") as file:
+            d = file.readlines()
         for i in range(len(notes)):
-            if notes[i] != 0:
-                notes[i] += numb-1
-                notes[i] = notes[i] % 7 + 1
-        self.playMusic(notes,duration)
+            notes[i] = dicnote[(notes[i]+numb-1)%7+1]
+            duration[i] = dicduration[duration[i]]
+        title = " ".join(d[(partition-1)*2].split()[1:])
+        title = f"#{len(d)//2+1} {title} transpose {numb} fois"
+        with open("src/Partition/partitions.txt", "w") as file:
+            for i in d:
+                file.write(i)
+            file.write(f"{title}\n")
+            for i in range(len(notes)):
+                file.write(notes[i]+duration[i])
+            file.write("\n")
 
