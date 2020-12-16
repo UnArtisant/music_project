@@ -25,7 +25,9 @@ class interfaceService() :
             transposeNumb = int(input("De combien voulez vous transposer la partition ?\n"))
             self.action.transpose(partition,transposeNumb)
         elif action == 2:
-            pass
+            partitionData = self.action.getPartitionData()
+            partition = self.music.getPlayedMusic(partitionData)
+            self.action.inverse(partition)
 
 
     def write(self):

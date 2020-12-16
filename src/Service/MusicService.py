@@ -11,7 +11,7 @@ class musicService() :
         while Invalid :
             try :
                 action = int(input(str_action))
-                assert action not in valueAccepted
+                assert action in valueAccepted
                 Invalid = False
             except ValueError:
                 print("Vous n'avez pas rentré de nombre.\n")
