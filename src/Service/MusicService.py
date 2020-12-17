@@ -35,7 +35,6 @@ class musicService() :
         play_obj = sa.play_buffer(audio,1,3,sample_rate)
         play_obj.wait_done()
 
-
     def getPlayedMusic(self, partition) :
         print("Listes des partitions : ")
         for key in partition :
@@ -77,6 +76,14 @@ class musicService() :
         final = "#" + str(self.length) + " " + title +"\n" + dataset
         with open("src/Partition/partitions.txt","a") as file :
             file.write(final)
+
+    def write(self,title,notes):
+        with open("src/Partition/partitions.txt", "a") as file:
+            file.write(f"{title}\n{notes}\n")
+
+
+
+
 
 
 

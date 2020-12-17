@@ -2,7 +2,6 @@ from src.Service.ActionService import actionService
 from src.Service.MusicService import musicService
 
 class interfaceService() :
-
     def __init__(self) :
         self.action = actionService()
         self.music = musicService()
@@ -29,7 +28,6 @@ class interfaceService() :
             partition = self.music.getPlayedMusic(partitionData)
             self.action.inverse(partition)
 
-
     def write(self):
         action = self.music.isValid([1,2],"Rentrer l'action à effectuer : \n 1)Ecrire et jouer la musique\n 2) Ecrire dans la base de donnée\n")
         if action == 1:
@@ -37,13 +35,8 @@ class interfaceService() :
         elif action == 2:
             self.music.upload()
 
-    
-
-    '''Retourne numéro de la partition'''
-
     def play(self) :
         partionData = self.action.getPartitionData()
         partition = self.music.getPlayedMusic(partionData)
         notes,duration = self.music.numericValue(partionData,partition)
         self.action.playMusic(notes,duration)
-

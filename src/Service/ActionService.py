@@ -16,8 +16,6 @@ class actionService() :
             dict[i+1] = [d[i*2],d[i*2+1]]
         return(dict)
 
-
-
     def playMusic(self,notes,duration):
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
@@ -26,8 +24,6 @@ class actionService() :
                 self.music.sound(notes[i],duration[i])
             else :
                 time.sleep(duration[i])
-
-
 
     def writeAndPlay(self):
         name = input("Entrez le nom du fichier : \n")
@@ -46,13 +42,10 @@ class actionService() :
             duration[i] = dicduration[duration[i]]
         title = " ".join(d[(partition-1)*2].split()[1:])
         title = f"#{len(d)//2+1} {title} transpose {numb} fois"
-        with open("src/Partition/partitions.txt", "w") as file:
-            for i in d:
-                file.write(i)
-            file.write(f"{title}\n")
-            for i in range(len(notes)):
-                file.write(notes[i]+duration[i])
-            file.write("\n")
+        lignenotes = ""
+        for i in range(len(notes)):
+            lignenotes += notes[i] + duration[i]
+        self.music.write(title,lignenotes)
 
     def inverse(self,partition):
         notes, duration = self.music.numericValue(self.getPartitionData(), partition)
@@ -63,13 +56,12 @@ class actionService() :
         title = " ".join(d[(partition - 1) * 2].split()[1:])
         title = f"#{len(d) // 2 + 1} {title} inversée"
         for i in range(len(notes)):
-            if notes != 0:
+            if notes[i] != 0:
                 notes[i] = dicnote[notes[i]]
+            else:
+                notes[i] = "Z"
             duration[i]=dicduration[duration[i]]
-        with open("src/Partition/partitions.txt", "w") as file:
-            for i in d:
-                file.write(i)
-            file.write(f"{title}\n")
-            for i in range(len(notes)):
-                file.write(notes[-1-i]+duration[-1-i])
-            file.write("\n")
+        noteligne = ""
+        for i in range(len(notes)):
+            noteligne += notes[-1-i]+duration[-1-i]
+        self.music.write(title,noteligne)
