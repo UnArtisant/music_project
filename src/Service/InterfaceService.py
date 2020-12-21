@@ -7,7 +7,7 @@ class interfaceService() :
         self.music = musicService()
     
     def interface(self) :
-        action = self.music.isValid([1,2,3,4], "Rentrer l'action à effectuer : \n 1) Jouer une partition \n 2) Ecrire une partition \n 3) Modifier une partition \n")
+        action = self.music.isValid([1,2,3,4], "Rentrer l'action à effectuer : \n 1) Jouer une partition \n 2) Ecrire une partition \n 3) Modifier une partition \n 4) Créer une partition à partir de celles dans la base de donnée")
 
         if action == 1 :
             self.play()
@@ -16,7 +16,7 @@ class interfaceService() :
         if action == 3 :
             self.update()
         if action == 4 :
-            self.test()
+            self.create()
 
     def update(self):
         action = self.music.isValid(([1,2]),"Rentrer l'action à effectuer : \n 1)Transposer une partition \n 2)Inverser une Partiton\n")
@@ -43,10 +43,11 @@ class interfaceService() :
         notes,duration = self.music.numericValue(partionData,partition)
         self.action.playMusic(notes,duration)
 
-    def test(self):
+    def create(self):
         n = int(input("A partir de combien de partitions voulez-vous composer une musique ?"))
         partition = []
         partionData = self.action.getPartitionData()
         for _ in range(n):
             partition.append(self.music.getPlayedMusic(partionData))
-        self.action.markov(partition)
+        title = input("Donnez un titre à la musique générée")
+        self.action.markov(partition,title)

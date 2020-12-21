@@ -67,7 +67,7 @@ class actionService() :
             noteligne += notes[-1-i]+duration[-1-i]
         self.music.write(title,noteligne)
 
-    def markov(self,partitions):
+    def markov(self,partitions,title):
         notes,durations = [],[]
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
@@ -116,7 +116,10 @@ class actionService() :
             tabdura[i] = dicduration[tabdura[i]]
         for i in range(len(tabdura)):
             newnotes += str(newtab[i])+str(tabdura[i])
-        self.music.write("#22 Test",newnotes)
+        with open("src/Partition/partitions.txt", "r") as file:
+            d = file.readlines()
+        title = f"#{len(d) // 2 + 1} {title}"
+        self.music.write(title,newnotes)
 
 
 
