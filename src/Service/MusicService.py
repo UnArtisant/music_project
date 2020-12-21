@@ -81,9 +81,3 @@ class musicService() :
         with open("src/Partition/partitions.txt", "a") as file:
             file.write(f"{title}\n{notes}\n")
 
-
-
-
-
-
-

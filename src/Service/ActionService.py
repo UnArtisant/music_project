@@ -1,6 +1,7 @@
 from src.Service.MusicService import musicService
 import numpy as np
 import time
+import random
 
 class actionService() :
     def __init__(self):
@@ -65,3 +66,53 @@ class actionService() :
         for i in range(len(notes)):
             noteligne += notes[-1-i]+duration[-1-i]
         self.music.write(title,noteligne)
+
+    def markov(self,partitions):
+        notes,durations = [],[]
+        dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
+        dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
+        for i in partitions:
+            partionData = self.getPartitionData()
+            note, duration = self.music.numericValue(partionData, i)
+            notes.append(note)
+            durations.append(duration)
+        tabsuccess = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
+        newpartnotes = []
+        i = 0
+        for note in range(len(notes)):
+            while i < (len(notes[note])-2):
+                if notes[note-1][i] != 0:
+                    if notes[note-1][i+1] != 0:
+                        print(notes[note-1][i])
+                        tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
+                    else :
+                        tabsuccess[notes[note - 1][i]-1][notes[note - 1][i + 2]-1] += 1
+                        i+=1
+                else :
+                    i+=1
+                i+=1
+        lentot = 0
+        for i in notes:
+            lentot+=len(i)
+        newtab = [random.randint(1,7)]
+        for i in range(lentot-1):
+            tab = []
+            for j in range(len(tabsuccess[newtab[-1]-1])):
+                tab += [j+1]*tabsuccess[newtab[-1]-1][j]
+            newtab.append(tab[random.randint(0,len(tab)-1)])
+        tabdura = []
+        for i in durations:
+            tabdura +=i
+        tabdura = tabdura[:len(newtab)]
+        newnotes = ""
+        for i in range(len(newtab)):
+            newtab[i] = dicnote[newtab[i]]
+            tabdura[i] = dicduration[tabdura[i]]
+        for i in range(len(tabdura)):
+            newnotes += str(newtab[i])+str(tabdura[i])
+        self.music.write("#22 Test",newnotes)
+
+
+
+
+
