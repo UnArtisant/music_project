@@ -30,3 +30,4 @@ SOLb LAn SIn SOLn LAc SIn SIb SOLn SIn SOLn LAc SIn SIn SOLn SOLb LAb SIn SOLn S
 DOr REn DOn MIn FAn Zc FAc p LAn SIn Zc DOn MIn SOLn SOLn Zc SOLc p DOb Zc REn SOLn LAn SOLn Zc SOLc p SIb Zc DOn SOLn LAn SOLn Zc SOLc p 
 #16 Joyeux anniversaire inversée transpose 0 fois
 DOr REn DOn MIn FAn SIc FAc p LAn SIn SIc DOn MIn SOLn SOLn SIc SOLc p DOb SIc REn SOLn LAn SOLn SIc SOLc p SIb SIc DOn SOLn LAn SOLn SIc SOLc p
+

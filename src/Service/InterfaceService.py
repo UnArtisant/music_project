@@ -52,6 +52,6 @@ class interfaceService() :
             for _ in range(n):
                 partition.append(self.music.getPlayedMusic(partionData))
             title = input("Donnez un titre à la musique générée")
-            self.action.markov(partition,title)
+            self.action.markov1(partition,title)
         elif action == 2:
             pass

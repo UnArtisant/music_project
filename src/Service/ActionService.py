@@ -67,7 +67,7 @@ class actionService() :
             noteligne += notes[-1-i]+duration[-1-i]
         self.music.write(title,noteligne)
 
-    def markov(self,partitions,title):
+    def markov1(self,partitions,title):
         notes,durations = [],[]
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
@@ -77,7 +77,6 @@ class actionService() :
             notes.append(note)
             durations.append(duration)
         tabsuccess = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
-        newpartnotes = []
         i = 0
         for note in range(len(notes)):
             z = 1
@@ -102,13 +101,16 @@ class actionService() :
             lentot+=len(i)
         newtab = [random.randint(1,7)]
         for i in range(lentot-1):
-            tab = []
-            for j in range(len(tabsuccess[newtab[-1]-1])):
-                tab += [j+1]*tabsuccess[newtab[-1]-1][j]
-            newtab.append(tab[random.randint(0,len(tab)-1)])
+            try :
+                tab = []
+                for j in range(len(tabsuccess[newtab[-1]-1])):
+                    tab += [j+1]*tabsuccess[newtab[-1]-1][j]
+                newtab.append(tab[random.randint(0,len(tab)-1)])
+            except:
+                pass
         tabdura = []
-        for i in durations:
-            tabdura +=i
+        while len(tabdura)!= len(newtab):
+            tabdura.append([1,0.5,0.25,0.125,0.1875,0.375,0.75,1.5][random.randint(0,7)])
         tabdura = tabdura[:len(newtab)]
         newnotes = ""
         for i in range(len(newtab)):
