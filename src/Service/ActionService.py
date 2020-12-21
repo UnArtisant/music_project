@@ -80,14 +80,20 @@ class actionService() :
         newpartnotes = []
         i = 0
         for note in range(len(notes)):
-            while i < (len(notes[note])-2):
+            z = 1
+            while i < (len(notes[note-1])-2):
                 if notes[note-1][i] != 0:
-                    if notes[note-1][i+1] != 0:
-                        print(notes[note-1][i])
-                        tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
-                    else :
-                        tabsuccess[notes[note - 1][i]-1][notes[note - 1][i + 2]-1] += 1
-                        i+=1
+                    try :
+                        if notes[note-1][i+1] != 0:
+                            print(notes[note-1][i])
+                            tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
+                        else :
+                            while notes[note-1][i+z] == 0:
+                                z+=1
+                            tabsuccess[notes[note - 1][i]-1][notes[note - 1][i + z]-1] += 1
+                            i+=1
+                    except:
+                        pass
                 else :
                     i+=1
                 i+=1

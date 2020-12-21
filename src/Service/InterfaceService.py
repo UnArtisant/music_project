@@ -44,6 +44,9 @@ class interfaceService() :
         self.action.playMusic(notes,duration)
 
     def test(self):
+        n = int(input("A partir de combien de partitions voulez-vous composer une musique ?"))
+        partition = []
         partionData = self.action.getPartitionData()
-        partition = self.music.getPlayedMusic(partionData)
-        self.action.markov([partition])
+        for _ in range(n):
+            partition.append(self.music.getPlayedMusic(partionData))
+        self.action.markov(partition)
