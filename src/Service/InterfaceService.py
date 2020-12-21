@@ -54,4 +54,10 @@ class interfaceService() :
             title = input("Donnez un titre à la musique générée")
             self.action.markov1(partition,title)
         elif action == 2:
-            pass
+            n = int(input("A partir de combien de partitions voulez-vous composer une musique ?"))
+            partition = []
+            partionData = self.action.getPartitionData()
+            for _ in range(n):
+                partition.append(self.music.getPlayedMusic(partionData))
+            title = input("Donnez un titre à la musique générée")
+            self.action.markov2(partition, title)

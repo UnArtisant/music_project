@@ -123,7 +123,63 @@ class actionService() :
         title = f"#{len(d) // 2 + 1} {title}"
         self.music.write(title,newnotes)
 
-
+    def markov2(self,partitions,title):
+        notes,durations = [],[]
+        dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
+        dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
+        for i in partitions:
+            partionData = self.getPartitionData()
+            note, duration = self.music.numericValue(partionData, i)
+            notes.append(note)
+            durations.append(duration)
+        tabsuccess = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
+        i = 0
+        for note in range(len(notes)):
+            z = 1
+            while i < (len(notes[note-1])-2):
+                if notes[note-1][i] != 0:
+                    try :
+                        if notes[note-1][i+1] != 0:
+                            print(notes[note-1][i])
+                            tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
+                        else :
+                            while notes[note-1][i+z] == 0:
+                                z+=1
+                            tabsuccess[notes[note - 1][i]-1][notes[note - 1][i + z]-1] += 1
+                            i+=1
+                    except:
+                        pass
+                else :
+                    i+=1
+                i+=1
+        lentot = 0
+        for i in notes:
+            lentot+=len(i)
+        newtab = [random.randint(1,7)]
+        for i in range(lentot-1):
+            try :
+                tab = []
+                for j in range(len(tabsuccess[newtab[-1]-1])):
+                    tab += [j+1]*tabsuccess[newtab[-1]-1][j]
+                nextnote = tab[random.randint(0,len(tab)-1)]
+                newtab.append(nextnote)
+                tabsuccess[newtab[-1]-1][nextnote-1] -=1
+            except:
+                pass
+        tabdura = []
+        while len(tabdura)!= len(newtab):
+            tabdura.append([1,0.5,0.25,0.125,0.1875,0.375,0.75,1.5][random.randint(0,7)])
+        tabdura = tabdura[:len(newtab)]
+        newnotes = ""
+        for i in range(len(newtab)):
+            newtab[i] = dicnote[newtab[i]]
+            tabdura[i] = dicduration[tabdura[i]]
+        for i in range(len(tabdura)):
+            newnotes += str(newtab[i])+str(tabdura[i])
+        with open("src/Partition/partitions.txt", "r") as file:
+            d = file.readlines()
+        title = f"#{len(d) // 2 + 1} {title}"
+        self.music.write(title,newnotes)
 
 
 
