@@ -44,10 +44,14 @@ class interfaceService() :
         self.action.playMusic(notes,duration)
 
     def create(self):
-        n = int(input("A partir de combien de partitions voulez-vous composer une musique ?"))
-        partition = []
-        partionData = self.action.getPartitionData()
-        for _ in range(n):
-            partition.append(self.music.getPlayedMusic(partionData))
-        title = input("Donnez un titre à la musique générée")
-        self.action.markov(partition,title)
+        action = self.music.isValid([1,2],"Voulez vous créer une partition avec : \n 1) La Version 1 de la chaîne de Markov \n 2) La Version 2 de la chaîne de Markov \n")
+        if action == 1:
+            n = int(input("A partir de combien de partitions voulez-vous composer une musique ?"))
+            partition = []
+            partionData = self.action.getPartitionData()
+            for _ in range(n):
+                partition.append(self.music.getPlayedMusic(partionData))
+            title = input("Donnez un titre à la musique générée")
+            self.action.markov(partition,title)
+        elif action == 2:
+            pass
