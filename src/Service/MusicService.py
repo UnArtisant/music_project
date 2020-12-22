@@ -35,10 +35,10 @@ class musicService() :
         play_obj = sa.play_buffer(audio,1,3,sample_rate)
         play_obj.wait_done()
 
-    def getPlayedMusic(self, partition) :
+    def getPlayedMusic(self, partition):
         print("Listes des partitions : ")
         for key in partition :
-            print(key, " ", partition[key][0])
+            print(key, " ", partition[key][0][:-2])
         return (int(input("Veuillez rentrez votre choix : \n ")))
 
     def numericValue(self,dico,numb):

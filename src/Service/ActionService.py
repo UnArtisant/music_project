@@ -96,7 +96,6 @@ class actionService() :
                 if notes[note-1][i] != 0:
                     try :
                         if notes[note-1][i+1] != 0:
-                            print(notes[note-1][i])
                             tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
                         else :
                             while notes[note-1][i+z] == 0:
@@ -152,7 +151,6 @@ class actionService() :
                 if notes[note-1][i] != 0:
                     try :
                         if notes[note-1][i+1] != 0:
-                            print(notes[note-1][i])
                             tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
                         else :
                             while notes[note-1][i+z] == 0:
