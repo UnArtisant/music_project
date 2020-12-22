@@ -2,6 +2,7 @@ from src.Service.MusicService import musicService
 import numpy as np
 import time
 import random
+import turtle as tr
 
 class actionService() :
     def __init__(self):
@@ -20,11 +21,22 @@ class actionService() :
     def playMusic(self,notes,duration):
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
+        x = 0
+        tr.bgcolor("black")
+        tr.color("red","yellow")
+        tr.begin_fill()
+        tr.speed(0)
+        tr.hideturtle()
         for i in range(len(notes)):
             if notes[i] != -1:
                 self.music.sound(notes[i],duration[i])
             else :
                 time.sleep(duration[i])
+            tr.forward(200)
+            tr.left(180+360/len(notes))
+        tr.end_fill()
+        tr.exitonclick()
+
 
     def writeAndPlay(self):
         name = input("Entrez le nom du fichier : \n")
