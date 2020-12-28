@@ -1,5 +1,5 @@
+#Ficher listant les differentes fonctions principales liées aux fonctionalités
 from src.Service.MusicService import musicService
-import numpy as np
 import time
 import random
 import turtle as tr
@@ -8,15 +8,6 @@ class actionService() :
     def __init__(self):
         self.music = musicService()
         self.frequency = {1:264,2:297,3:330,4:352,5:396,6:440,7:495,0:-1}
-    
-    def getPartitionData(self):
-        dict = {}
-        d = []
-        with open("src/Partition/partitions.txt","r") as file:
-            d = file.readlines()
-        for i in range(len(d)//2):
-            dict[i+1] = [d[i*2],d[i*2+1]]
-        return(dict)
 
     def playMusic(self,notes,duration):
         for i in range(len(notes)):
@@ -24,19 +15,24 @@ class actionService() :
         x = 0
         tr.bgcolor("black")
         tr.color("red","yellow")
+        color = ["red","orange","yellow"]
+        tr.up()
         tr.begin_fill()
+        tr.backward(100)
+        tr.down()
         tr.speed(0)
         tr.hideturtle()
         for i in range(len(notes)):
+            tr.color(color[i%3])
             if notes[i] != -1:
                 self.music.sound(notes[i],duration[i])
             else :
                 time.sleep(duration[i])
             tr.forward(200)
-            tr.left(180+360/len(notes))
+            tr.left(180+(360/len(notes)))
+        tr.fillcolor("blue")
         tr.end_fill()
         tr.exitonclick()
-
 
     def writeAndPlay(self):
         name = input("Entrez le nom du fichier : \n")
@@ -60,7 +56,7 @@ class actionService() :
             lignenotes += notes[i] + duration[i]
         self.music.write(title,lignenotes)
 
-    def inverse(self,partition):
+    def reverse(self,partition):
         notes, duration = self.music.numericValue(self.getPartitionData(), partition)
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
@@ -84,7 +80,7 @@ class actionService() :
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
         for i in partitions:
-            partionData = self.getPartitionData()
+            partionData = self.music.getPartitionData()
             note, duration = self.music.numericValue(partionData, i)
             notes.append(note)
             durations.append(duration)
@@ -129,9 +125,6 @@ class actionService() :
             tabdura[i] = dicduration[tabdura[i]]
         for i in range(len(tabdura)):
             newnotes += str(newtab[i])+str(tabdura[i])
-        with open("src/Partition/partitions.txt", "r") as file:
-            d = file.readlines()
-        title = f"#{len(d) // 2 + 1} {title}"
         self.music.write(title,newnotes)
 
     def markov2(self,partitions,title):
@@ -139,7 +132,7 @@ class actionService() :
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
         for i in partitions:
-            partionData = self.getPartitionData()
+            partionData = self.music.getPartitionData()
             note, duration = self.music.numericValue(partionData, i)
             notes.append(note)
             durations.append(duration)
@@ -166,14 +159,14 @@ class actionService() :
         for i in notes:
             lentot+=len(i)
         newtab = [random.randint(1,7)]
-        for i in range(lentot-1):
+        while len(newtab) < lentot:
             try :
                 tab = []
                 for j in range(len(tabsuccess[newtab[-1]-1])):
                     tab += [j+1]*tabsuccess[newtab[-1]-1][j]
                 nextnote = tab[random.randint(0,len(tab)-1)]
                 newtab.append(nextnote)
-                tabsuccess[newtab[-1]-1][nextnote-1] -=1
+                tabsuccess[newtab[-1]-1][nextnote-1] -= 1
             except:
                 pass
         tabdura = []
@@ -186,10 +179,4 @@ class actionService() :
             tabdura[i] = dicduration[tabdura[i]]
         for i in range(len(tabdura)):
             newnotes += str(newtab[i])+str(tabdura[i])
-        with open("src/Partition/partitions.txt", "r") as file:
-            d = file.readlines()
-        title = f"#{len(d) // 2 + 1} {title}"
         self.music.write(title,newnotes)
-
-
-

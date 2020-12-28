@@ -1,9 +1,19 @@
+#Fonctions secondaires nécessaires à l'executions des fonctions primaires du fichier Action
 import numpy as np
 import simpleaudio as sa
 
 class musicService() :
     def __init__(self):
         pass
+
+    def getPartitionData(self):
+        dict = {}
+        d = []
+        with open("src/Partition/partitions.txt","r") as file:
+            d = file.readlines()
+        for i in range(len(d)//2):
+            dict[i+1] = [d[i*2],d[i*2+1]]
+        return(dict)
 
     def isValid(self, accepted, str_action) :
         Invalid = True
@@ -16,7 +26,7 @@ class musicService() :
             except ValueError:
                 print("Vous n'avez pas rentré de nombre.\n")
             except AssertionError:
-                print("Veuillez entrer une valeur parmis celles proposées")
+                print("Veuillez entrer une valeur parmis celles proposées\n")
         return action
 
     def sound(self,freq, duration ):
@@ -38,7 +48,7 @@ class musicService() :
     def getPlayedMusic(self, partition):
         print("Listes des partitions : ")
         for key in partition :
-            print(key, " ", partition[key][0][:-2])
+            print(key, " ", partition[key][0][:-1])
         return (int(input("Veuillez rentrez votre choix : \n ")))
 
     def numericValue(self,dico,numb):
@@ -60,24 +70,16 @@ class musicService() :
                 durations.append(duration)
         return(notes,durations)
 
-    def upload(self) :
-        title = input("Rentrer un titre")
-        print('Rentrer la partition que vous voulez enregistrer : ')
-        add = True
-        dataset = ""
-        while add :
-            value = input("Rentrer une note ou faites espace pour quitter le programme : ")
-            dataset += " " + value
-            if value == "" :
-                add = False
-        with open("src/Partition/partitions.txt","r") as file:
-            d = file.readlines()
-            self.length = len(d)//2
-        final = "#" + str(self.length) + " " + title +"\n" + dataset
-        with open("src/Partition/partitions.txt","a") as file :
-            file.write(final)
-
     def write(self,title,notes):
-        with open("src/Partition/partitions.txt", "a") as file:
-            file.write(f"{title}\n{notes}\n")
-
+        with open("src/Partition/partitions.txt", "r") as file:
+            longueur = len(file.readlines())//2+1
+        title = f"#{longueur} {title}"
+        t = True
+        for i in range(len(notes.split())):
+            if notes.split()[i][:-1] not in "DOREMIFASOLLASIDO" or notes.split()[i][-1] not in "nbrcp":
+                t = False
+        if t :
+            with open("src/Partition/partitions.txt", "a") as file:
+                file.write(f"{title}\n{notes}\n")
+        else:
+            print("La partition rentrée n'est pas sous le bon format\n")

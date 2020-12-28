@@ -22,23 +22,3 @@ Zn Zn SIn SIb LAn LAb SOLb p SOLb p SIn DOn SIn LAn SOLn LAn SOLb p Zc SOLn LAn 
 MIn DOn MIn DOn REc MIc FAc MIn REc SOLn MIn DOn MIn DOn MIn DOn REc MIc FAc MIn REc SOLn DOn 
 #12 C'est la mÃ¨re Michel
 FAc p Zb FAn FAc FAn FAc DOn FAc SOLn LAn SOLn FAn Zc FAc MIc p Zb REn MIc FAn SOLc LAn SOLc FAn MIn REn DOb DOn Zc DOc SOLc p Zb SOLn SOLc LAn SIn p SIc LAc FAn DOc LAn SOLn Zc SOLc SIc p Zb SIn SIc SIn LAc FAn FAc FAn SOLn DOn FAc FAc FAc MIn REn REn p Zb REn REc FAn FAc SOLn DOn DOc p Zb DOn DOn Zc DOc FAn LAn DOc SIn LAc SOLn FAc DOn DOc DOn FAc FAn FAc MIn REn REc p Zb REn REc FAn FAc SOLn DOn DOc p Zb SOLn DOn Zc DOc FAn LAn DOc SIn LAc SOLn FAc DOn DOc DOn FAn Zn
-#13 Le bon roi Dagobert transpose 5 fois
-SOLn SOLn SOLn SOLb FAn FAb MIb p MIb p SOLn LAn SOLn FAn MIn FAn MIb p SOLc MIn FAn SOLb SOLn SOLn LAn SIn FAb FAn FAn MIn FAn SOLb SOLn SOLn LAn SIn FAb FAn FAb SOLn SOLb FAn FAb MIn MIb p FAb p SOLn LAn SOLn FAn MIn FAn MIb p 
-#14 A la claire fontaine inversÃ©e
-SOLb LAn SIn SOLn LAc SIn SIb SOLn SIn SOLn LAc SIn SIn SOLn SOLb LAb SIn SOLn SIn REn REb SIn REn SOLn LAn SIn SIb SIb LAn SIn SIn SOLn SOLb LAn SIn LAn SIn SIn SOLn SOLb 
-#15 Joyeux anniversaire inversée
-DOr REn DOn MIn FAn Zc FAc p LAn SIn Zc DOn MIn SOLn SOLn Zc SOLc p DOb Zc REn SOLn LAn SOLn Zc SOLc p SIb Zc DOn SOLn LAn SOLn Zc SOLc p 
-#16 Joyeux anniversaire inversée transpose 0 fois
-DOr REn DOn MIn FAn SIc FAc p LAn SIn SIc DOn MIn SOLn SOLn SIc SOLc p DOb SIc REn SOLn LAn SOLn SIc SOLc p SIb SIc DOn SOLn LAn SOLn SIc SOLc p
-#17 test
-DOb p SIn p SOLr SOLn p SOLc p LAb p SOLb p DOn REb DOc REb DOn p SIb LAb p FAb p MIc DOn p SIr LAc p FAb MIr DOc SIr LAr FAc p MIb p DOn p REc p DOb SIc p LAc p SOLn p 
-#18 test markov V2 5 musiques compilées
-FAb REc SIb p LAb p SIn SIc p LAb SOLc REr MIb p REc DOn REb p SIb p LAc SIb SIn p LAc p SIn LAc p SOLr SOLb p SIc LAn SIr LAb SIc p LAb p SOLr SIn p LAb p SIc REb MIb REn p DOb MIn REr DOb p REn DOn REr MIc REc p DOb p MIb p REn p DOr REr SIn LAc p SOLc REb DOn REn DOr REc p MIb p REc SIc p REr MIr REn p SIn p LAr SOLc SIb p SOLn p SIc LAb p SOLn p REb p MIc p REn MIn p REn DOb p REb p DOr MIc REc SIb p SOLc SIb LAc SIc LAc p SOLb p REc p DOc p MIc p REc SIr SOLr SIc LAn p SOLb p SIn LAc p SOLn p SIc LAb p SOLc SIn LAc p SOLr SIb REb DOn REr SIc p LAb p SOLc SIb p LAb p SOLr SIc SOLn SIb p SOLc SIr LAn SOLc p SIn p LAc SOLc p SIc LAc p SOLr SIb p REc p SIb p SOLc SIb LAn p SIb p LAb p SIn p LAn SIb p LAc p SOLn p SIn LAb p SOLr SIb p REb SIb p SOLc p SIc p REb p SIr LAr SIb p LAn SOLc SIc p LAc p SOLb p SIb p SOLb p SIn p LAc SOLb p SIb REn p SIr LAb SOLc p SIn REn SIc p LAb p SOLr SIn LAr SOLc p SIc SOLb p SIb p LAn SOLn SIc p LAb p SOLn p SIn LAn SIc LAr SOLr SIb p LAc SOLr SIn p LAr SIc p REb p SIb p REr MIb REn 
-#19 ppp
-MIb p DOb p SOLn p LAb p SOLn p MIc DOc p SOLb p LAb p SOLr SOLn p SOLn p SOLn p SOLb DOr REc DOb p REr DOb p SIr LAc FAn p MIb p DOb REb p DOr REb DOc p SIb LAb SOLc p MIr 
-#20 Clair de lune
-SIc p LAc p SOLb p DOc DOb REr REn p DOb p DOc DOr DOn p DOr MIb p REn DOb p MIb p REr MIb p REb MIn p REb DOb p REc DOr MIr REn p DOr REc DOb p SIc LAr SOLr DOc MIc p REb LAb p SOLb DOb MIn REn p DOb p REb p MIb p REb p DOb p MIc REn p 
-#21 Au claire de la lune inversée
-DOr REn REn MIn DOn REb MIb REn DOn DOn DOn Zr SOLr LAn SIn DOn REn LAb LAb REn REn REn REn Zr DOr REn REn MIn DOn REb MIb REn DOn DOn DOn Zr DOr REn REn MIn DOn REb MIb REn DOn DOn DOn 
-#22 Au claire de la lune transpose 4 fois
-SOLn SOLn SOLn LAn SIb LAb SOLn SIn LAn LAn SOLr FAr SOLn SOLn SOLn LAn SIb LAb SOLn SIn LAn LAn SOLr FAr LAn LAn LAn LAn MIb MIb LAn SOLn FAn MIn REr FAr SOLn SOLn SOLn LAn SIb LAb SOLn SIn LAn LAn SOLr 
