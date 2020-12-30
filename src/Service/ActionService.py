@@ -13,33 +13,40 @@ class actionService() :
         self.music = musicService()
         self.frequency = {1:264,2:297,3:330,4:352,5:396,6:440,7:495,0:-1}
 
-    def playMusic(self, notes, duration):
+    def playMusic(self, notes, duration,title):
         """
         Joue les notes une par une et gère l'annimation Turtle
         :param notes: liste de notes en valeurs numériques
         :param duration: liste de durées en secondes
+        :param title: titre de la musique jouée
         :return: rien car joue simplement la musique, fonction finale
         """
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         x = 0
         tr.bgcolor("purple")
+        tr.speed(0)
+        tr.up()
+        tr.setpos(0, -150)
+        tr.down()
+        tr.color("white")
+        tr.write(title,False,align="center", font=("Arial", 10, "normal"))
         tr.color("red","blue")
         color = ["red","orange","yellow"]
         tr.up()
+        tr.setpos(0,0)
         tr.begin_fill()
         tr.backward(100)
         tr.down()
-        tr.speed(0)
         tr.hideturtle()
         for i in range(len(notes)):
             tr.color(color[i%3],"blue")
-            if notes[i] != -1:
-                self.music.sound(notes[i],duration[i])
-            else :
-                time.sleep(duration[i])
             tr.forward(200)
-            tr.left(180+(360/len(notes)))
+            tr.left(180 + (360 / len(notes)))
+            if notes[i] != -1:
+                self.music.sound(notes[i], duration[i])
+            else:
+                time.sleep(duration[i])
         tr.end_fill()
         tr.exitonclick()
 
@@ -51,7 +58,7 @@ class actionService() :
         name = input("Entrez le nom du fichier : \n")
         partition = input("Entrez la partition : \n")
         notes,duration = self.music.numericValue({1: [name, partition]}, 1)
-        self.playMusic(notes,duration)
+        self.playMusic(notes,duration,name)
 
     def transpose(self, partition, numb):
         """

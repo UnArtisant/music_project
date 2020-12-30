@@ -42,7 +42,7 @@ class musicService() :
                 print("Veuillez entrer une valeur parmis celles proposées\n")
         return action
 
-    def sound(self, freq, duration ):
+    def sound(self, freq, duration):
         """
         Permet de jouer une note
         :param freq: fréquence de la note jouée
