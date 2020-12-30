@@ -1,4 +1,8 @@
-#Ficher listant les differentes fonctions principales liées aux fonctionalités
+"""
+L'harmonie est numérique
+Raphaël BARRIET, Pierre-Marie HERRBURGER--PIETRI
+Ficher listant les differentes fonctions principales liées aux fonctionalités
+"""
 from src.Service.MusicService import musicService
 import time
 import random
@@ -9,7 +13,13 @@ class actionService() :
         self.music = musicService()
         self.frequency = {1:264,2:297,3:330,4:352,5:396,6:440,7:495,0:-1}
 
-    def playMusic(self,notes,duration):
+    def playMusic(self, notes, duration):
+        """
+        Joue les notes une par une et gère l'annimation Turtle
+        :param notes: liste de notes en valeurs numériques
+        :param duration: liste de durées en secondes
+        :return: rien car joue simplement la musique, fonction finale
+        """
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         x = 0
@@ -34,12 +44,22 @@ class actionService() :
         tr.exitonclick()
 
     def writeAndPlay(self):
+        """
+        Demande à l'utiisateur de rentrer une musique qui va être jouée sans la rentrer dans la base de donnée
+        :return: rien joue simplement la musique rentrée
+        """
         name = input("Entrez le nom du fichier : \n")
         partition = input("Entrez la partition : \n")
         notes,duration = self.music.numericValue({1: [name, partition]}, 1)
         self.playMusic(notes,duration)
 
-    def transpose(self,partition,numb):
+    def transpose(self, partition, numb):
+        """
+        transpose la partition et l'écrit dans le fichier "partitions.txt"
+        :param partition: numéro de la partition à jouer
+        :param numb: nombre de fois que l'on doit transposer la musique
+        :return: rien, écrit dans le fichier partition la nouvele partition générée
+        """
         notes,duration = self.music.numericValue(self.music.getPartitionData(),partition)
         dicnote = {1:"DO", 2:"RE", 3:"MI", 4:"FA", 5:"SOL", 6:"LA", 7:"SI"}
         dicduration = {1:"r ", 0.5:"b ", 0.25:"n ", 0.125:"c ", 0.1875:"c p ", 0.375:"n p ", 0.75:"b p ", 1.5:"b p "}
@@ -55,7 +75,12 @@ class actionService() :
             lignenotes += notes[i] + duration[i]
         self.music.write(title,lignenotes)
 
-    def reverse(self,partition):
+    def reverse(self, partition):
+        """
+        inverse la partition et l'écrit dans le fichier "partitions.txt"
+        :param partition: numéro de la partition à inverser
+        :return: rien, écrit dans le fichier "partitions.txt" la partition inversée
+        """
         notes, duration = self.music.numericValue(self.music.getPartitionData(), partition)
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
@@ -74,7 +99,13 @@ class actionService() :
             noteligne += notes[-1-i]+duration[-1-i]
         self.music.write(title,noteligne)
 
-    def markov1(self,partitions,title):
+    def markov1(self, partitions, title):
+        """
+        Applique la première version de la chaine de markov à une liste de partition et rentre la musique crée dans le fichier "partitions.txt"
+        :param partitions: tableau des numéros de partitions avec lesquels on veut créer une nouvelle partition
+        :param title: Titre de la partition crée
+        :return: rien, écrit dans "partitions.txt" la nouvelle partition
+        """
         notes,durations = [],[]
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
@@ -126,7 +157,13 @@ class actionService() :
             newnotes += str(newtab[i])+str(tabdura[i])
         self.music.write(title,newnotes)
 
-    def markov2(self,partitions,title):
+    def markov2(self, partitions, title):
+        """
+        Applique la deuxième version de la chaine de markov à une liste de partition et rentre la musique crée dans le fichier "partitions.txt"
+        :param partitions: tableau des numéros de partitions avec lesquels on veut créer une nouvelle partition
+        :param title: Titre de la partition crée
+        :return: rien, écrit dans "partitions.txt" la nouvelle partition
+        """
         notes,durations = [],[]
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "r p "}
