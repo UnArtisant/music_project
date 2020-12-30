@@ -6,7 +6,6 @@ Ficher listant les differentes fonctions principales liées aux fonctionalités
 from src.Service.MusicService import musicService
 import time
 import random
-import turtle as tr
 
 class actionService() :
     def __init__(self):
@@ -21,6 +20,7 @@ class actionService() :
         :param title: titre de la musique jouée
         :return: rien car joue simplement la musique, fonction finale
         """
+        import turtle as tr #Importer turtle à cet endroit car si importé au début du fichier, si l'utilisateur décide de jouer une autre partition, on a l'erreur turtle.terminator
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         x = 0
