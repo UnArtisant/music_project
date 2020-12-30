@@ -13,8 +13,8 @@ class actionService() :
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         x = 0
-        tr.bgcolor("black")
-        tr.color("red","yellow")
+        tr.bgcolor("purple")
+        tr.color("red","blue")
         color = ["red","orange","yellow"]
         tr.up()
         tr.begin_fill()
@@ -23,14 +23,13 @@ class actionService() :
         tr.speed(0)
         tr.hideturtle()
         for i in range(len(notes)):
-            tr.color(color[i%3])
+            tr.color(color[i%3],"blue")
             if notes[i] != -1:
                 self.music.sound(notes[i],duration[i])
             else :
                 time.sleep(duration[i])
             tr.forward(200)
             tr.left(180+(360/len(notes)))
-        tr.fillcolor("blue")
         tr.end_fill()
         tr.exitonclick()
 
@@ -41,7 +40,7 @@ class actionService() :
         self.playMusic(notes,duration)
 
     def transpose(self,partition,numb):
-        notes,duration = self.music.numericValue(self.getPartitionData(),partition)
+        notes,duration = self.music.numericValue(self.music.getPartitionData(),partition)
         dicnote = {1:"DO", 2:"RE", 3:"MI", 4:"FA", 5:"SOL", 6:"LA", 7:"SI"}
         dicduration = {1:"r ", 0.5:"b ", 0.25:"n ", 0.125:"c ", 0.1875:"c p ", 0.375:"n p ", 0.75:"b p ", 1.5:"b p "}
         with open("src/Partition/partitions.txt", "r") as file:
@@ -50,14 +49,14 @@ class actionService() :
             notes[i] = dicnote[(notes[i]+numb-1)%7+1]
             duration[i] = dicduration[duration[i]]
         title = " ".join(d[(partition-1)*2].split()[1:])
-        title = f"#{len(d)//2+1} {title} transpose {numb} fois"
+        title = f"{title} transpose {numb} fois"
         lignenotes = ""
         for i in range(len(notes)):
             lignenotes += notes[i] + duration[i]
         self.music.write(title,lignenotes)
 
     def reverse(self,partition):
-        notes, duration = self.music.numericValue(self.getPartitionData(), partition)
+        notes, duration = self.music.numericValue(self.music.getPartitionData(), partition)
         dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
         with open("src/Partition/partitions.txt", "r") as file:
@@ -159,8 +158,9 @@ class actionService() :
         for i in notes:
             lentot+=len(i)
         newtab = [random.randint(1,7)]
-        while len(newtab) < lentot:
-            try :
+        i = 0
+        while len(newtab) < lentot or i<lentot *2:
+            try:
                 tab = []
                 for j in range(len(tabsuccess[newtab[-1]-1])):
                     tab += [j+1]*tabsuccess[newtab[-1]-1][j]
@@ -169,6 +169,8 @@ class actionService() :
                 tabsuccess[newtab[-1]-1][nextnote-1] -= 1
             except:
                 pass
+            finally:
+                i+=1
         tabdura = []
         while len(tabdura)!= len(newtab):
             tabdura.append([1,0.5,0.25,0.125,0.1875,0.375,0.75,1.5][random.randint(0,7)])

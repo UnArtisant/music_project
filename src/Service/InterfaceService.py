@@ -60,3 +60,4 @@ class interfaceService() :
             self.action.markov1(partition,title)
         elif action == 2:
             self.action.markov2(partition, title)
+
