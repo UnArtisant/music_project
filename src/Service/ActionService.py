@@ -6,6 +6,7 @@ Ficher listant les differentes fonctions principales liées aux fonctionalités
 from src.Service.MusicService import musicService
 import time
 import random
+import turtle as tr
 
 class actionService() :
     def __init__(self):
@@ -20,35 +21,38 @@ class actionService() :
         :param title: titre de la musique jouée
         :return: rien car joue simplement la musique, fonction finale
         """
-        import turtle as tr #Importer turtle à cet endroit car si importé au début du fichier, si l'utilisateur décide de jouer une autre partition, on a l'erreur turtle.terminator
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
-        x = 0
-        tr.bgcolor("purple")
-        tr.speed(0)
-        tr.up()
-        tr.setpos(0, -150)
-        tr.down()
-        tr.color("white")
-        tr.write(title,False,align="center", font=("Arial", 10, "normal"))
-        tr.color("red","blue")
-        color = ["red","orange","yellow"]
-        tr.up()
-        tr.setpos(0,0)
-        tr.begin_fill()
-        tr.backward(100)
-        tr.down()
-        tr.hideturtle()
-        for i in range(len(notes)):
-            tr.color(color[i%3],"blue")
-            tr.forward(200)
-            tr.left(180 + (360 / len(notes)))
-            if notes[i] != -1:
-                self.music.sound(notes[i], duration[i])
-            else:
-                time.sleep(duration[i])
-        tr.end_fill()
-        tr.exitonclick()
+        try:
+            x = 0
+            tr.TurtleScreen._RUNNING = True
+            tr.bgcolor("purple")
+            tr.speed(0)
+            tr.up()
+            tr.setpos(0, -150)
+            tr.down()
+            tr.color("white")
+            tr.write(title,False,align="center", font=("Arial", 10, "normal"))
+            tr.color("red","blue")
+            color = ["red","orange","yellow"]
+            tr.up()
+            tr.setpos(0,0)
+            tr.begin_fill()
+            tr.backward(100)
+            tr.down()
+            tr.hideturtle()
+            for i in range(len(notes)):
+                tr.color(color[i%3],"blue")
+                tr.forward(200)
+                tr.left(180 + (360 / len(notes)))
+                if notes[i] != -1:
+                    self.music.sound(notes[i], duration[i])
+                else:
+                    time.sleep(duration[i])
+            tr.end_fill()
+            tr.exitonclick()
+        except tr.Terminator:
+            print("\nMusique fermée\n")
 
     def writeAndPlay(self):
         """

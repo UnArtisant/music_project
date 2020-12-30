@@ -70,10 +70,21 @@ class musicService() :
         :param partition: dictionnaire des partitions obtenu avec getPartitionData
         :return: Le choix de l'utilisateur
         """
-        print("Listes des partitions : ")
-        for key in partition :
-            print(key, " ", partition[key][0][:-1])
-        return (int(input("Veuillez rentrez votre choix : \n ")))
+        Invalid = True
+        while Invalid:
+            try:
+                print("Listes des partitions : ")
+                for key in partition :
+                    print(key, " ", partition[key][0][:-1])
+                choice =int(input("Veuillez rentrez votre choix : \n "))
+                assert 0<choice<len(partition)
+                Invalid = False
+            except AssertionError:
+                print("Le numéro de partition n'existe pas")
+            except ValueError:
+                print("Vous devez entrer un numéro")
+
+        return(choice)
 
     def numericValue(self, dico, numb):
         """
