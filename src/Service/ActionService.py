@@ -157,7 +157,7 @@ class actionService() :
             except:
                 pass
         tabdura = []
-        while len(tabdura)!= len(newtab):
+        while len(tabdura)!= len(newtab) or len(tabdura)*2>=i:
             tabdura.append([1,0.5,0.25,0.125,0.1875,0.375,0.75,1.5][random.randint(0,7)])
         tabdura = tabdura[:len(newtab)]
         newnotes = ""
@@ -217,8 +217,7 @@ class actionService() :
                 tabsuccess[newtab[-1]-1][nextnote-1] -= 1
             except:
                 pass
-            finally:
-                i+=1
+            i+=1
         tabdura = []
         while len(tabdura)!= len(newtab):
             tabdura.append([1,0.5,0.25,0.125,0.1875,0.375,0.75,1.5][random.randint(0,7)])
