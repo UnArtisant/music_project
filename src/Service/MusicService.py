@@ -77,7 +77,7 @@ class musicService() :
                 for key in partition :
                     print(key, " ", partition[key][0][:-1])
                 choice =int(input("Veuillez rentrez votre choix : \n "))
-                assert 0<choice<len(partition)
+                assert 0<choice<=len(partition)
                 Invalid = False
             except AssertionError:
                 print("Le numéro de partition n'existe pas")
