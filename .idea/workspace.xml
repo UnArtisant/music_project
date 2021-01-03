@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="62812212-f6c4-44ac-9da7-62d39e65dfb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Partition/partitions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Partition/partitions.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/ActionService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ActionService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/InterfaceService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/InterfaceService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/MusicService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MusicService.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,26 +146,26 @@
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1608304276542" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609611658454" />
-    <state width="1515" height="666" key="GridCell.Tab.0.bottom" timestamp="1609677790858">
+    <state width="1515" height="666" key="GridCell.Tab.0.bottom" timestamp="1609687070797">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="317" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1608304484676" />
-    <state width="1515" height="666" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609677790858" />
-    <state width="1515" height="666" key="GridCell.Tab.0.center" timestamp="1609677790858">
+    <state width="1515" height="666" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609687070797" />
+    <state width="1515" height="666" key="GridCell.Tab.0.center" timestamp="1609687070797">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="317" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1608304484676" />
-    <state width="1515" height="666" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609677790858" />
-    <state width="1515" height="666" key="GridCell.Tab.0.left" timestamp="1609677790858">
+    <state width="1515" height="666" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609687070797" />
+    <state width="1515" height="666" key="GridCell.Tab.0.left" timestamp="1609687070796">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="317" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1608304484676" />
-    <state width="1515" height="666" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609677790858" />
-    <state width="1515" height="666" key="GridCell.Tab.0.right" timestamp="1609677790858">
+    <state width="1515" height="666" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609687070796" />
+    <state width="1515" height="666" key="GridCell.Tab.0.right" timestamp="1609687070797">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="317" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1608304484676" />
-    <state width="1515" height="666" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609677790858" />
+    <state width="1515" height="666" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609687070797" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1608596795930">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

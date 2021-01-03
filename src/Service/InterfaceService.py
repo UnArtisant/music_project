@@ -7,9 +7,10 @@ from src.Service.ActionService import actionService
 from src.Service.MusicService import musicService
 
 class interfaceService() :
-    def __init__(self):
-        self.action = actionService()
-        self.music = musicService()
+    def __init__(self,file):
+        self.action = actionService(file)
+        self.music = musicService(file)
+        self.file = file
 
     def interface(self):
         """

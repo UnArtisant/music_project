@@ -6,8 +6,8 @@ import numpy as np
 import simpleaudio as sa
 
 class musicService() :
-    def __init__(self):
-        pass
+    def __init__(self,file):
+        self.file = file
 
     def getPartitionData(self):
         """
@@ -16,7 +16,7 @@ class musicService() :
         """
         dict = {}
         d = []
-        with open("src/Partition/partitions.txt","r") as file:
+        with open(f"src/Partition/{self.file}","r") as file:
             d = file.readlines()
         for i in range(len(d)//2):
             dict[i+1] = [d[i*2],d[i*2+1]]
@@ -119,7 +119,7 @@ class musicService() :
         :param notes: notes de la partition
         :return: rien, écrit la partition dans le fichier "partitions.txt"
         """
-        with open("src/Partition/partitions.txt", "r") as file:
+        with open(f"src/Partition/{self.file}", "r") as file:
             longueur = len(file.readlines())//2+1
         title = f"#{longueur} {title}"
         t = True
