@@ -17,16 +17,19 @@ class interfaceService() :
         Menu principal, sert à rediger l'utilisateur vers un second menu correspondant à la fonctionnalité qu'il a choisi
         :return: rien, redirige juste l'utilsateur vers la fonction associée à son choix
         """
-        action = self.music.isValid([1,2,3,4,0], "Rentrer l'action à effectuer : \n 1) Jouer une partition \n 2) Ecrire une partition \n 3) Modifier une partition \n 4) Créer une partition à partir de celles dans la base de donnée \n 0) Quitter le programme \n")
+        action = self.music.isValid([1,2,3,4,5,0], "Rentrer l'action à effectuer : \n 1) Jouer une partition \n 2) Ecrire une partition \n 3) Modifier une partition \n 4) Créer une partition à partir de celles dans la base de donnée \n 5) Changer le fichier de la base de donnée \n 0) Quitter le programme \n")
 
-        if action == 1 :
+        if action == 1:
             self.play()
-        elif action == 2 :
+        elif action == 2:
             self.write()
-        elif action == 3 :
+        elif action == 3:
             self.update()
-        elif action == 4 :
+        elif action == 4:
             self.create()
+        elif action == 5:
+            file = input("De quel fichier voulez-vous vous traiter les partitions ?\n ")
+            interfaceService(file).interface()
         if action != 0:
             self.interface()
 
@@ -76,7 +79,7 @@ class interfaceService() :
         :return: rien, redirige l'utilisateur vers la fonction associée à son choix
         """
         action = self.music.isValid([1,2],"Voulez vous créer une partition avec : \n 1) La Version 1 de la chaîne de Markov \n 2) La Version 2 de la chaîne de Markov \n")
-        action2 = self.music.isValid([1,2]," Voulez vous appliquer les chaînes de markov :\n 1) A une seule partition \n 2) la base de donnée ?\n")
+        action2 = self.music.isValid([1,2]," Voulez vous appliquer les chaînes de markov :\n 1) A une seule partition \n 2) La base de donnée \n")
         partition = []
         partionData = self.music.getPartitionData()
         if action2 == 1:
@@ -89,4 +92,3 @@ class interfaceService() :
             self.action.markov1(partition,title)
         elif action == 2:
             self.action.markov2(partition, title)
-
