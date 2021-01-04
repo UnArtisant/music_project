@@ -60,7 +60,7 @@ class actionService() :
         Demande à l'utiisateur de rentrer une musique qui va être jouée sans la rentrer dans la base de donnée
         :return: rien joue simplement la musique rentrée
         """
-        name = input("Entrez le nom du fichier : \n")
+        name = input("Entrez le nom de la partition : \n")
         partition = input("Entrez la partition : \n")
         notes,duration = self.music.numericValue({1: [name, partition]}, 1)
         self.playMusic(notes,duration,name)

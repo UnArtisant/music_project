@@ -76,11 +76,14 @@ class interfaceService() :
         :return: rien, redirige l'utilisateur vers la fonction associée à son choix
         """
         action = self.music.isValid([1,2],"Voulez vous créer une partition avec : \n 1) La Version 1 de la chaîne de Markov \n 2) La Version 2 de la chaîne de Markov \n")
-        n = int(input("A partir de combien de partitions voulez-vous composer une musique ? \n"))
+        action2 = self.music.isValid([1,2]," Voulez vous appliquer les chaînes de markov :\n 1) A une seule partition \n 2) la base de donnée ?\n")
         partition = []
         partionData = self.music.getPartitionData()
-        for _ in range(n):
+        if action2 == 1:
             partition.append(self.music.getPlayedMusic(partionData))
+        elif action2 == 2:
+            for i in range(len(partionData.keys())):
+                partition.append(i+1)
         title = input("Donnez un titre à la musique générée : \n")
         if action == 1:
             self.action.markov1(partition,title)
