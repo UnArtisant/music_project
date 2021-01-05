@@ -1,5 +1,6 @@
 """
 L’harmonie est numérique
+Raphaël BARRIET, Pierre-Marie HERRBURGER--PIETRI
 Fonctions secondaires nécessaires à l'executions des fonctions primaires du fichier Action
 """
 import numpy as np

@@ -4,7 +4,6 @@ Raphaël BARRIET, Pierre-Marie HERRBURGER--PIETRI
 Ficher listant les differentes fonctions principales liées aux fonctionalités
 """
 from src.Service.MusicService import musicService
-import time
 import random
 import turtle as tr
 
@@ -46,10 +45,7 @@ class actionService() :
                 tr.color(color[i%3],"blue")
                 tr.forward(200)
                 tr.left(180 + (360 / len(notes)))
-                if notes[i] != -1:
-                    self.music.sound(notes[i], duration[i])
-                else:
-                    time.sleep(duration[i])
+                self.music.sound(notes[i], duration[i])
             tr.end_fill()
             tr.exitonclick()
         except tr.Terminator:
