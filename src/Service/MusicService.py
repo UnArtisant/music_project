@@ -39,10 +39,10 @@ class musicService() :
                 action = int(input(str_action))
                 assert action in valueAccepted
                 Invalid = False
-            except ValueError:
-                print("Vous n'avez pas rentré de nombre mais une chaîne  caractère.\n")
-            except AssertionError:
-                print("Veuillez entrer une valeur parmis celles proposées\n")
+            except ValueError: #S'effectue que si l'erreur de type de valeur apparait
+                print("Vous n'avez pas entré de nombre mais une chaîne  caractère.\n")
+            except AssertionError:  # S'effectue que si le assert n'est pas vérifié
+                print("Veuillez entrer une valeur parmis celles proposées.\n")
         return action
 
     def sound(self, freq, duration):
@@ -97,8 +97,7 @@ class musicService() :
         :return: deux tableaux : un de notes en valeurs numériques, chaque valeur correspondant à une note (1,2,3,4,5,6,7...)
                                  un de durées en secondes (0.125,0.25,0.5,1,...)
         """
-        d = dico[numb][1]
-        partition = d.split()
+        partition = dico[numb][1].split()
         notes = []
         durations = []
         for i in partition:
@@ -107,7 +106,6 @@ class musicService() :
             else:
                 note = i[:-1]
                 duration = i[-1]
-
                 note = self.dicnotenum[note]
                 duration = self.dicduranum[duration]
                 notes.append(note)

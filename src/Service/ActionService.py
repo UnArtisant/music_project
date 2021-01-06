@@ -15,7 +15,7 @@ class actionService() :
         self.dicnotefile = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
         self.dicdurationfile = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "r p "}
 
-    def playMusic(self, notes, duration,title):
+    def playMusic(self, notes, durations,title):
         """
         Joue les notes une par une et gère l'annimation Turtle
         :param notes: liste de notes en valeurs numériques
@@ -26,7 +26,6 @@ class actionService() :
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         try:
-            x = 0
             tr.TurtleScreen._RUNNING = True
             tr.bgcolor("purple")
             tr.speed(0)
@@ -47,7 +46,7 @@ class actionService() :
                 tr.color(color[i%3],"blue")
                 tr.forward(200)
                 tr.left(180 + (360 / len(notes)))
-                self.music.sound(notes[i], duration[i])
+                self.music.sound(notes[i], durations[i])
             tr.end_fill()
             tr.exitonclick()
         except tr.Terminator:
