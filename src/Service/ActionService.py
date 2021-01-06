@@ -120,26 +120,31 @@ class actionService() :
             note, duration = self.music.numericValue(partionData, i)
             notes.append(note)
             durations.append(duration)
+        tabdatadurations = []
         tabsuccess = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
-        i = 0
-        for note in range(len(notes)):
+        for duration in range(len(durations)):
+            for i in range(len(durations[duration])):
+                tabdatadurations.append(durations[duration][i])
+        for note in notes:
             z = 1
-            while i < (len(notes[note-1])-2):
-                if notes[note-1][i] != 0:
-                    try :
-                        if notes[note-1][i+1] != 0:
-                            tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
-                        else :
-                            while notes[note-1][i+z] == 0:
-                                z+=1
-                            tabsuccess[notes[note - 1][i]-1][notes[note - 1][i + z]-1] += 1
-                            i+=1
+            i = 0
+            while i < (len(note) - 2):
+                if note[i] != 0:
+                    try:
+                        if note[i + 1] != 0:
+                            tabsuccess[note[i] - 1][note[i + 1] - 1] += 1
+                        else:
+                            while note[i + z] == 0:
+                                z += 1
+                            tabsuccess[note[i] - 1][note[i + z] - 1] += 1
+                            i += 1
                     except:
                         pass
-                else :
-                    i+=1
-                i+=1
+                else:
+                    i += 1
+                i += 1
         lentot = 0
+        print(f"tabsuccess {tabsuccess}")
         for i in notes:
             lentot+=len(i)
         newtab = [random.randint(1,7)]
@@ -152,14 +157,14 @@ class actionService() :
             except:
                 pass
         tabdura = []
-        while len(tabdura)!= len(newtab):
-            tabdura.append([1,0.5,0.25,0.125,0.1875,0.375,0.75,1.5][random.randint(0,7)])
+        for _ in range(len(newtab)):
+            tabdura.append(tabdatadurations[random.randint(0, len(tabdatadurations) - 1)])
         tabdura = tabdura[:len(newtab)]
         newnotes = ""
         for i in range(len(newtab)):
             newtab[i] = dicnote[newtab[i]]
             tabdura[i] = dicduration[tabdura[i]]
-        for i in range(len(tabdura)):
+        for i in range(len(newtab)):
             newnotes += str(newtab[i])+str(tabdura[i])
         self.music.write(title,newnotes)
 
@@ -179,18 +184,22 @@ class actionService() :
             notes.append(note)
             durations.append(duration)
         tabsuccess = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
-        i = 0
-        for note in range(len(notes)):
+        tabdatadurations = []
+        for duration in range(len(durations)):
+            for i in range(len(durations[duration])):
+                tabdatadurations.append(durations[duration][i])
+        for note in notes:
             z = 1
-            while i < (len(notes[note-1])-2):
-                if notes[note-1][i] != 0:
+            i=0
+            while i < (len(note)-2):
+                if note[i] != 0:
                     try :
-                        if notes[note-1][i+1] != 0:
-                            tabsuccess[notes[note-1][i]-1][notes[note-1][i+1]-1] += 1
+                        if note[i+1] != 0:
+                            tabsuccess[note[i]-1][note[i+1]-1] += 1
                         else :
-                            while notes[note-1][i+z] == 0:
+                            while note[i+z] == 0:
                                 z+=1
-                            tabsuccess[notes[note - 1][i]-1][notes[note - 1][i + z]-1] += 1
+                            tabsuccess[note[i]-1][note[i + z]-1] += 1
                             i+=1
                     except:
                         pass
@@ -202,7 +211,7 @@ class actionService() :
             lentot+=len(i)
         newtab = [random.randint(1,7)]
         i = 0
-        while len(newtab) < lentot and i<lentot *2:
+        while len(newtab) < lentot and i<lentot **2:
             try:
                 tab = []
                 for j in range(len(tabsuccess[newtab[-1]-1])):
@@ -214,13 +223,16 @@ class actionService() :
                 pass
             i+=1
         tabdura = []
-        while len(tabdura)!= len(newtab):
-            tabdura.append([1,0.5,0.25,0.125,0.1875,0.375,0.75,1.5][random.randint(0,7)])
+        for _ in range(len(newtab)):
+            duration = tabdatadurations[random.randint(0, len(tabdatadurations) - 1)]
+            tabdura.append(duration)
+            tabdatadurations.remove(duration)
+        tabdura = tabdura[:len(newtab)]
         tabdura = tabdura[:len(newtab)]
         newnotes = ""
         for i in range(len(newtab)):
             newtab[i] = dicnote[newtab[i]]
             tabdura[i] = dicduration[tabdura[i]]
-        for i in range(len(tabdura)):
+        for i in range(len(newtab)):
             newnotes += str(newtab[i])+str(tabdura[i])
         self.music.write(title,newnotes)

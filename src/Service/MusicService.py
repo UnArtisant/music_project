@@ -38,7 +38,7 @@ class musicService() :
                 assert action in valueAccepted
                 Invalid = False
             except ValueError:
-                print("Vous n'avez pas rentré de nombre.\n")
+                print("Vous n'avez pas rentré de nombre mais une chaîne  caractère.\n")
             except AssertionError:
                 print("Veuillez entrer une valeur parmis celles proposées\n")
         return action
@@ -76,7 +76,7 @@ class musicService() :
             try:
                 print("Listes des partitions : ")
                 for key in partition :
-                    print(key, " ", partition[key][0][:-1])
+                    print(partition[key][0][:-1])
                 choice =int(input("Veuillez rentrez votre choix : \n "))
                 assert 0<choice<=len(partition)
                 Invalid = False

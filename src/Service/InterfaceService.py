@@ -70,7 +70,7 @@ class interfaceService() :
         partionData = self.music.getPartitionData()
         partition = self.music.getPlayedMusic(partionData)
         notes,duration = self.music.numericValue(partionData,partition)
-        title = partionData[partition][0]
+        title = " ".join(partionData[partition][0].split()[1:])
         self.action.playMusic(notes,duration,title)
 
     def create(self):
