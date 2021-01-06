@@ -12,6 +12,8 @@ class actionService() :
         self.music = musicService(file)
         self.frequency = {1:264,2:297,3:330,4:352,5:396,6:440,7:495,0:-1}
         self.file = file
+        self.dicnotefile = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
+        self.dicdurationfile = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "r p "}
 
     def playMusic(self, notes, duration,title):
         """
@@ -69,13 +71,11 @@ class actionService() :
         :return: rien, écrit dans le fichier partition la nouvele partition générée
         """
         notes,duration = self.music.numericValue(self.music.getPartitionData(),partition)
-        dicnote = {1:"DO", 2:"RE", 3:"MI", 4:"FA", 5:"SOL", 6:"LA", 7:"SI"}
-        dicduration = {1:"r ", 0.5:"b ", 0.25:"n ", 0.125:"c ", 0.1875:"c p ", 0.375:"n p ", 0.75:"b p ", 1.5:"b p "}
         with open(f"src/Partition/{self.file}", "r") as file:
             d = file.readlines()
         for i in range(len(notes)):
-            notes[i] = dicnote[(notes[i]+numb-1)%7+1]
-            duration[i] = dicduration[duration[i]]
+            notes[i] = self.dicnotefile[(notes[i]+numb-1)%7+1]
+            duration[i] = self.dicdurationfile[duration[i]]
         title = " ".join(d[(partition-1)*2][:-1].split()[1:])
         title = f"{title} transpose {numb} fois"
         lignenotes = ""
@@ -91,8 +91,6 @@ class actionService() :
         :return: rien, écrit dans le fichier "partitions.txt" la partition inversée
         """
         notes, duration = self.music.numericValue(self.music.getPartitionData(), partition)
-        dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI",0:"Z"}
-        dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
         with open(f"src/Partition/{self.file}", "r") as file:
             d = file.readlines()
         title = " ".join(d[(partition-1)*2][:-1].split()[1:])
@@ -101,7 +99,7 @@ class actionService() :
         for i in range(len(notes)):
             if notes[i]!=0:
                 notes[i]= 8-notes[i]
-            noteligne+=dicnote[notes[i]] + dicduration[duration[i]]
+            noteligne+=self.dicnotefile[notes[i]] + self.dicdurationfile[duration[i]]
         self.music.write(title,noteligne)
         print("\n La partition a bien été ajoutée")
 
@@ -113,8 +111,6 @@ class actionService() :
         :return: rien, écrit dans "partitions.txt" la nouvelle partition
         """
         notes,durations = [],[]
-        dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
-        dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "b p "}
         for i in partitions:
             partionData = self.music.getPartitionData()
             note, duration = self.music.numericValue(partionData, i)
@@ -162,8 +158,8 @@ class actionService() :
         tabdura = tabdura[:len(newtab)]
         newnotes = ""
         for i in range(len(newtab)):
-            newtab[i] = dicnote[newtab[i]]
-            tabdura[i] = dicduration[tabdura[i]]
+            newtab[i] = self.dicnotefile[newtab[i]]
+            tabdura[i] = self.dicdurationfile[tabdura[i]]
         for i in range(len(newtab)):
             newnotes += str(newtab[i])+str(tabdura[i])
         self.music.write(title,newnotes)
@@ -176,8 +172,6 @@ class actionService() :
         :return: rien, écrit dans "partitions.txt" la nouvelle partition
         """
         notes,durations = [],[]
-        dicnote = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
-        dicduration = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "r p "}
         for i in partitions:
             partionData = self.music.getPartitionData()
             note, duration = self.music.numericValue(partionData, i)
@@ -231,8 +225,8 @@ class actionService() :
         tabdura = tabdura[:len(newtab)]
         newnotes = ""
         for i in range(len(newtab)):
-            newtab[i] = dicnote[newtab[i]]
-            tabdura[i] = dicduration[tabdura[i]]
+            newtab[i] = self.dicnotefile[newtab[i]]
+            tabdura[i] = self.dicdurationfile[tabdura[i]]
         for i in range(len(newtab)):
             newnotes += str(newtab[i])+str(tabdura[i])
         self.music.write(title,newnotes)

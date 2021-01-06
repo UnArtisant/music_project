@@ -9,6 +9,8 @@ import simpleaudio as sa
 class musicService() :
     def __init__(self,file):
         self.file = file
+        self.dicnotenum = {"DO": 1, "RE": 2, "MI": 3, "FA": 4, "SOL": 5, "LA": 6, "SI": 7, "Z": 0}
+        self.dicduranum = {"c": 0.125, "n": 0.25, "b": 0.5, "r": 1}
 
     def getPartitionData(self):
         """
@@ -92,7 +94,7 @@ class musicService() :
         Permet d'obtenir des listes de notes et durées utilisables plus facilement dans les autres fonctions
         :param dico: dictionnaire des partitions obtenu avec getPartitionData
         :param numb: le numéro de la partition choisie par l'utilisateur
-        :return: deux tableaux : un de notes en valeurs numériques, chaque valeur correspondant à une note (1,2,3,4,5,6,7,.....)
+        :return: deux tableaux : un de notes en valeurs numériques, chaque valeur correspondant à une note (1,2,3,4,5,6,7...)
                                  un de durées en secondes (0.125,0.25,0.5,1,...)
         """
         d = dico[numb][1]
@@ -100,15 +102,14 @@ class musicService() :
         notes = []
         durations = []
         for i in partition:
-            if i[-1]=="p":
+            if i[-1] == "p":
                 durations[-1] = durations[-1]*1.5
             else:
                 note = i[:-1]
                 duration = i[-1]
-                dicnote = {"DO":1,"RE":2,"MI":3,"FA":4,"SOL":5,"LA":6,"SI":7,"Z":0}
-                note = dicnote[note]
-                dicdura = {"c":0.125,"n":0.25,"b":0.5,"r":1}
-                duration = dicdura[duration]
+
+                note = self.dicnotenum[note]
+                duration = self.dicduranum[duration]
                 notes.append(note)
                 durations.append(duration)
         return(notes,durations)
