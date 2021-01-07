@@ -28,7 +28,8 @@ class interfaceService() :
         elif action == 4:
             self.create()
         elif action == 5:
-            file = input("De quel fichier voulez-vous vous traiter les partitions ?\n ")
+            print('\nNB : Pour pouvoir rajouter un fichier dans la base de donnée veuillez le rajouter dans le dossier "src/Partition" \n')
+            file = input("Entrez le nom du fichier dont vous voulez traiter les partitions : \n ")
             interfaceService(file).interface()
         if action != 0:
             self.interface()

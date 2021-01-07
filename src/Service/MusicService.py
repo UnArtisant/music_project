@@ -19,8 +19,10 @@ class musicService() :
         """
         dict = {}
         d = []
+        #récupère une liste de toutes les lignes du fichier
         with open(f"src/Partition/{self.file}","r") as file:
             d = file.readlines()
+        #Crée un dictionnaire avec comme clé le numéro de partition et comme valeur un tableau [titre,partition]
         for i in range(len(d)//2):
             dict[i+1] = [d[i*2],d[i*2+1]]
         return(dict)
@@ -76,17 +78,18 @@ class musicService() :
         Invalid = True
         while Invalid:
             try:
+                #Affiche tous les titres de partitions
                 print("Listes des partitions : ")
                 for key in partition :
                     print(partition[key][0][:-1])
+                #Demande le choix de l'utilisateur
                 choice =int(input("Veuillez rentrez votre choix : \n "))
                 assert 0<choice<=len(partition)
                 Invalid = False
-            except AssertionError:
+            except AssertionError: #Si le chiffre entré ne correspond a aucune partition
                 print("Le numéro de partition n'existe pas")
-            except ValueError:
+            except ValueError: #Si l'entrée de l'utilisateur n'est pas un nombre
                 print("Vous devez entrer un numéro")
-
         return(choice)
 
     def numericValue(self, dico, numb):
@@ -97,17 +100,21 @@ class musicService() :
         :return: deux tableaux : un de notes en valeurs numériques, chaque valeur correspondant à une note (1,2,3,4,5,6,7...)
                                  un de durées en secondes (0.125,0.25,0.5,1,...)
         """
+        #Récupère la partition comme un tableau des notes
         partition = dico[numb][1].split()
         notes = []
         durations = []
         for i in partition:
             if i[-1] == "p":
+                #Si la durée est "p" alors on doit multiplier la derniere durée par 1.5
                 durations[-1] = durations[-1]*1.5
             else:
+                #Sinon affecter a chaque note sa valeur numerique et a chaque duree sa valeur en secondes
                 note = i[:-1]
                 duration = i[-1]
                 note = self.dicnotenum[note]
                 duration = self.dicduranum[duration]
+                #Et ajouter ces nouvelles valeurs dans les tableaux de notes et durées
                 notes.append(note)
                 durations.append(duration)
         return(notes,durations)
@@ -119,15 +126,21 @@ class musicService() :
         :param notes: notes de la partition
         :return: rien, écrit la partition dans le fichier "partitions.txt"
         """
+        #Ouvre le fichier pour savoir quel numéro afficher à la partition entrée
         with open(f"src/Partition/{self.file}", "r") as file:
             longueur = len(file.readlines())//2+1
+        #Ajoute le nouveau numéro de partition au titre
         title = f"#{longueur} {title}"
         t = True
+        #Vérifie le format de la partition
         for i in range(len(notes.split())):
-            if notes.split()[i][:-1] not in "DOREMIFASOLLASIDO" or notes.split()[i][-1] not in "nbrcp":
-                t = False
+            if notes.split()[i] != "p":
+                if notes.split()[i][:-1] not in "DOREMIFASOLLASIDO" or notes.split()[i][-1] not in "nbrc":
+                    t = False
+        #Si le format est bien vérifié, écrire la partition dans le fichier
         if t :
             with open("src/Partition/partitions.txt", "a") as file:
                 file.write(f"{title}\n{notes}\n")
+        #Sinon Afficher un message d'erreur à l'utilisateur
         else:
             print("La partition rentrée n'est pas sous le bon format\n")

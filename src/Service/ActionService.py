@@ -26,6 +26,7 @@ class actionService() :
         for i in range(len(notes)):
             notes[i] = self.frequency[notes[i]]
         try:
+            #Initialisation Turtle
             tr.TurtleScreen._RUNNING = True
             tr.bgcolor("purple")
             tr.speed(0)
@@ -43,13 +44,16 @@ class actionService() :
             tr.down()
             tr.hideturtle()
             for i in range(len(notes)):
+                #Jouer une note, faire avancer la tortue
                 tr.color(color[i%3],"blue")
                 tr.forward(200)
                 tr.left(180 + (360 / len(notes)))
                 self.music.sound(notes[i], durations[i])
+            #Remplir la figure, Fermer la fenêtre
             tr.end_fill()
             tr.exitonclick()
         except tr.Terminator:
+            #Si l'utilisateur ferme la fenêtre, afficher un message au lieu d'une erreur
             print("\nMusique fermée\n")
 
     def writeAndPlay(self):
@@ -69,18 +73,22 @@ class actionService() :
         :param numb: nombre de fois que l'on doit transposer la musique
         :return: rien, écrit dans le fichier partition la nouvele partition générée
         """
+        #Recupérer la partition et son titre
         notes,duration = self.music.numericValue(self.music.getPartitionData(),partition)
         with open(f"src/Partition/{self.file}", "r") as file:
             d = file.readlines()
+        title = " ".join(d[(partition - 1) * 2][:-1].split()[1:])
+        title = f"{title} transpose {numb} fois"
+        #Transposer la partition de numb et mettre les tableaux au format fichier
         for i in range(len(notes)):
             notes[i] = self.dicnotefile[(notes[i]+numb-1)%7+1]
             duration[i] = self.dicdurationfile[duration[i]]
-        title = " ".join(d[(partition-1)*2][:-1].split()[1:])
-        title = f"{title} transpose {numb} fois"
-        lignenotes = ""
+        #Création du string à entrer
+        linenotes = ""
         for i in range(len(notes)):
-            lignenotes += notes[i] + duration[i]
-        self.music.write(title,lignenotes)
+            linenotes += notes[i] + duration[i]
+        #Ecrire la partition dans le fichier
+        self.music.write(title,linenotes)
         print("\n La partition a bien été ajoutée")
 
     def reverse(self, partition):
@@ -89,17 +97,20 @@ class actionService() :
         :param partition: numéro de la partition à inverser
         :return: rien, écrit dans le fichier "partitions.txt" la partition inversée
         """
+        #Recupérer la partition et son titre
         notes, duration = self.music.numericValue(self.music.getPartitionData(), partition)
         with open(f"src/Partition/{self.file}", "r") as file:
             d = file.readlines()
         title = " ".join(d[(partition-1)*2][:-1].split()[1:])
         title = f"{title} inversée"
-        noteligne = ""
+        #Création du string de la partition inversée format fichier
+        noteline = ""
         for i in range(len(notes)):
             if notes[i]!=0:
                 notes[i]= 8-notes[i]
-            noteligne+=self.dicnotefile[notes[i]] + self.dicdurationfile[duration[i]]
-        self.music.write(title,noteligne)
+            noteline+=self.dicnotefile[notes[i]] + self.dicdurationfile[duration[i]]
+        #Ecrire le string dans le fichier
+        self.music.write(title,noteline)
         print("\n La partition a bien été ajoutée")
 
     def markov1(self, partitions, title):
@@ -109,17 +120,21 @@ class actionService() :
         :param title: Titre de la partition crée
         :return: rien, écrit dans "partitions.txt" la nouvelle partition
         """
+        #Récupérer des tableaux de notes et durée des partitions données
         notes,durations = [],[]
         for i in partitions:
             partionData = self.music.getPartitionData()
             note, duration = self.music.numericValue(partionData, i)
             notes.append(note)
             durations.append(duration)
+        #Initialisation des tableaux contenant toutes les durées / la succession des notes
         tabdatadurations = []
         tabsuccess = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
+        #Récupération du tableau contenant toutes les durées
         for duration in range(len(durations)):
             for i in range(len(durations[duration])):
                 tabdatadurations.append(durations[duration][i])
+        #Récupération de la matrice de succesion des notes
         for note in notes:
             z = 1
             i = 0
@@ -138,29 +153,33 @@ class actionService() :
                 else:
                     i += 1
                 i += 1
+        #Récupération de la longueur de la partition
         lentot = 0
-        print(f"tabsuccess {tabsuccess}")
         for i in notes:
             lentot+=len(i)
         newtab = [random.randint(1,7)]
+        #Création du nouveau tableau des notes après application de Markov
         for i in range(lentot-1):
             try :
                 tab = []
                 for j in range(len(tabsuccess[newtab[-1]-1])):
                     tab += [j+1]*tabsuccess[newtab[-1]-1][j]
                 newtab.append(tab[random.randint(0,len(tab)-1)])
-            except:
+            except: #Except au cas ou le tableau des succesions serait vide
                 pass
+        #Création du nouveau tableau des durées : durées tirées au hasard parmis celles des partitions de base
         tabdura = []
         for _ in range(len(newtab)):
             tabdura.append(tabdatadurations[random.randint(0, len(tabdatadurations) - 1)])
         tabdura = tabdura[:len(newtab)]
+        #Création du string format fichier à rentrer dans le fichier
         newnotes = ""
         for i in range(len(newtab)):
             newtab[i] = self.dicnotefile[newtab[i]]
             tabdura[i] = self.dicdurationfile[tabdura[i]]
         for i in range(len(newtab)):
             newnotes += str(newtab[i])+str(tabdura[i])
+        #Ecriture dans le fichier
         self.music.write(title,newnotes)
 
     def markov2(self, partitions, title):
@@ -170,17 +189,21 @@ class actionService() :
         :param title: Titre de la partition crée
         :return: rien, écrit dans "partitions.txt" la nouvelle partition
         """
+        #Récupérer des tableaux de notes et durée des partitions données
         notes,durations = [],[]
         for i in partitions:
             partionData = self.music.getPartitionData()
             note, duration = self.music.numericValue(partionData, i)
             notes.append(note)
             durations.append(duration)
+        #Initialisation des tableaux contenant toutes les durées / la succession des notes
         tabsuccess = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
         tabdatadurations = []
+        #Récupération du tableau contenant toutes les durées
         for duration in range(len(durations)):
             for i in range(len(durations[duration])):
                 tabdatadurations.append(durations[duration][i])
+        #Récupération de la matrice de succesion des notes
         for note in notes:
             z = 1
             i=0
@@ -199,12 +222,14 @@ class actionService() :
                 else :
                     i+=1
                 i+=1
+        #Récupération de la longueur de la partition
         lentot = 0
         for i in notes:
             lentot+=len(i)
+        #Création du nouveau tableau des notes après application de Markov
         newtab = [random.randint(1,7)]
         i = 0
-        while len(newtab) < lentot and i<lentot **2:
+        while len(newtab) < lentot and i<lentot **2: #Condition sur le i pour eviter une boucle infinie
             try:
                 tab = []
                 for j in range(len(tabsuccess[newtab[-1]-1])):
@@ -212,20 +237,22 @@ class actionService() :
                 nextnote = tab[random.randint(0,len(tab)-1)]
                 newtab.append(nextnote)
                 tabsuccess[newtab[-1]-1][nextnote-1] -= 1
-            except:
+            except: #Except au cas ou le tableau des succesions serait vide
                 pass
             i+=1
+        #Création du nouveau tableau des durées : durées tirées au hasard parmis celles des partitions de base
         tabdura = []
         for _ in range(len(newtab)):
             duration = tabdatadurations[random.randint(0, len(tabdatadurations) - 1)]
             tabdura.append(duration)
             tabdatadurations.remove(duration)
         tabdura = tabdura[:len(newtab)]
-        tabdura = tabdura[:len(newtab)]
+        #Création du string format fichier à rentrer dans le fichier
         newnotes = ""
         for i in range(len(newtab)):
             newtab[i] = self.dicnotefile[newtab[i]]
             tabdura[i] = self.dicdurationfile[tabdura[i]]
         for i in range(len(newtab)):
             newnotes += str(newtab[i])+str(tabdura[i])
+        #Ecriture dans le fichier
         self.music.write(title,newnotes)
