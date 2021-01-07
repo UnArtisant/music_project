@@ -135,7 +135,7 @@ class musicService() :
         #Vérifie le format de la partition
         for i in range(len(notes.split())):
             if notes.split()[i] != "p":
-                if notes.split()[i][:-1] not in "DOREMIFASOLLASIDO" or notes.split()[i][-1] not in "nbrc":
+                if notes.split()[i][:-1] not in "DOREMIFASOLLASIDOZ" or notes.split()[i][-1] not in "nbrcp":
                     t = False
         #Si le format est bien vérifié, écrire la partition dans le fichier
         if t :

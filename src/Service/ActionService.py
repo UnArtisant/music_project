@@ -12,7 +12,7 @@ class actionService() :
         self.music = musicService(file)
         self.frequency = {1:264,2:297,3:330,4:352,5:396,6:440,7:495,0:-1}
         self.file = file
-        self.dicnotefile = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI"}
+        self.dicnotefile = {1: "DO", 2: "RE", 3: "MI", 4: "FA", 5: "SOL", 6: "LA", 7: "SI",0:"Z"}
         self.dicdurationfile = {1: "r ", 0.5: "b ", 0.25: "n ", 0.125: "c ", 0.1875: "c p ", 0.375: "n p ", 0.75: "b p ",1.5: "r p "}
 
     def playMusic(self, notes, durations,title):
