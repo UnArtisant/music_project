@@ -17,8 +17,10 @@ class interfaceService() :
         Menu principal, sert à rediger l'utilisateur vers un second menu correspondant à la fonctionnalité qu'il a choisi
         :return: rien, redirige juste l'utilsateur vers la fonction associée à son choix
         """
+        #Choix de l'utilisateur avec la fonction isValid
         action = self.music.isValid([1,2,3,4,5,0], "Rentrer l'action à effectuer : \n 1) Jouer une partition \n 2) Ecrire une partition \n 3) Modifier une partition \n 4) Créer une partition à partir de celles dans la base de donnée \n 5) Changer le fichier de la base de donnée \n 0) Quitter le programme \n")
 
+        #Renvoie vers les fonctions correspondantes à l'action voulue
         if action == 1:
             self.play()
         elif action == 2:
@@ -39,7 +41,9 @@ class interfaceService() :
         Sous menu de la fonctionalité modifier : permet à l'utilisateur de faire le choix entre transposer une musique ou l'inverser
         :return: rien, redirige l'utilisateur vers la fonction associée à son choix
         """
+        #Choix de l'utilisateur avec la fonction isValid
         action = self.music.isValid(([1,2]),"Rentrer l'action à effectuer : \n 1) Transposer une partition \n 2) Inverser une Partiton\n")
+        #Renvoie vers les fonctions correspondantes à l'action voulue
         if action == 1:
             partitionData = self.music.getPartitionData()
             partition = self.music.getPlayedMusic(partitionData)
@@ -55,7 +59,9 @@ class interfaceService() :
         Sous menu de la fonctionalité ecrire : Permet à l'utilisateur de faire le choix entre rentrer une partition dans le fichier "partitions.txt" ou jouer la partition qu'il est entrain d'ecrire
         :return: rien, redirige l'utilisateur vers la fonction associée à son choix
         """
+        #Choix de l'utilisateur avec la fonction isValid
         action = self.music.isValid([1,2],"Rentrer l'action à effectuer : \n 1) Ecrire et jouer la musique\n 2) Ecrire dans la base de donnée\n")
+        #Renvoie vers les fonctions correspondantes à l'action voulue
         if action == 1:
             self.action.writeAndPlay()
         elif action == 2:
@@ -79,16 +85,20 @@ class interfaceService() :
         Sous menu des chaines de markov : permet à l'utilisateur de choisir entre créer une musique à partir de la version 1 ou de la version 2 de la chaîne de Markov
         :return: rien, redirige l'utilisateur vers la fonction associée à son choix
         """
+        #Choix de l'utilisateur avec la fonction isValid
         action = self.music.isValid([1,2],"Voulez vous créer une partition avec : \n 1) La Version 1 de la chaîne de Markov \n 2) La Version 2 de la chaîne de Markov \n")
         action2 = self.music.isValid([1,2]," Voulez vous appliquer les chaînes de markov :\n 1) A une seule partition \n 2) La base de donnée \n")
         partition = []
         partionData = self.music.getPartitionData()
+        #Recupere les données de(s) (la) partition(s) choisies par l'utilisateur
         if action2 == 1:
             partition.append(self.music.getPlayedMusic(partionData))
         elif action2 == 2:
             for i in range(len(partionData.keys())):
                 partition.append(i+1)
+        #Demande le titre
         title = input("Donnez un titre à la musique générée : \n")
+        #Renvoie vers les fonctions correspondantes au choix de l'utilisateur
         if action == 1:
             self.action.markov1(partition,title)
         elif action == 2:
