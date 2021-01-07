@@ -62,9 +62,19 @@ class actionService() :
         :return: rien joue simplement la musique rentrée
         """
         name = input("Entrez le nom de la partition : \n")
-        partition = input("Entrez la partition : \n")
-        notes,duration = self.music.numericValue({1: [name, partition]}, 1)
-        self.playMusic(notes,duration,name)
+        notes = input("Entrez la partition : \n")
+        t = True
+        # Vérifie le format de la partition
+        for i in range(len(notes.split())):
+            if notes.split()[i] != "p":
+                if notes.split()[i][:-1] not in "DOREMIFASOLLASIDOZ" or notes.split()[i][-1] not in "nbrcp":
+                    t = False
+        # Si le format est bien vérifié, écrire la partition dans le fichier
+        if t:
+            notes,duration = self.music.numericValue({1: [name, notes]}, 1)
+            self.playMusic(notes,duration,name)
+        else :
+            print("\nLa partition entrée n'est pas dans le bon format\n")
 
     def transpose(self, partition, numb):
         """
